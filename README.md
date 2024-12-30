@@ -24,7 +24,7 @@ Uma aplicação para um banco digital, com o objetivo de registrar as principais
 
 ## 🎨 Prévia do Design
 
-Para mais detalhes, confira o projeto no [Figma](https://www.figma.com).
+Para mais detalhes, confira o projeto no [Figma](https://www.figma.com/design/KNNAcFsW2qt6e4VIaMNx2W/Pr%C3%A9via-do-Design?node-id=0-1&t=0FgmkUWauFz4wMdu-1).
 
 ## 🤝 Contribuintes
 
