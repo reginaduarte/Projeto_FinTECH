@@ -1,0 +1,31 @@
+USE BD_FINTECH
+GO
+
+CREATE SEQUENCE SEQ_NUM_CONTA
+    START WITH 20250001  -- Começa com o valor 20250001
+    INCREMENT BY 1;      -- Incrementa de 1 em 1
+GO
+
+CREATE TRIGGER TRIGGER_INSERT_NUM_CONTA
+ON CONTA
+FOR INSERT
+AS
+BEGIN
+    DECLARE @numeroConta INT;
+
+    -- Gerar o número da conta com base na sequência
+    SELECT @numeroConta = NEXT VALUE FOR SEQ_NUM_CONTA;
+
+    -- Atualizar a coluna NUMERO_CONTA com o valor gerado pela sequência
+    UPDATE CONTA
+    SET NUMERO_CONTA = @numeroConta
+    WHERE ID_CONTA IN (SELECT ID_CONTA FROM INSERTED);
+    
+END;
+
+-- INSERT: TESTE DA TRIGGER
+INSERT INTO CONTA (ID_USUARIO, AGENCIA, TIPO_CONTA, SALDO, DATA_ABERTURA) VALUES
+(7, 1221, 1, 2500.90, '2024-12-10')
+GO
+
+select * from USUARIO
