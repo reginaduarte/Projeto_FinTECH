@@ -1,4 +1,4 @@
-# 📊 Projeto_FinTECH - Grupo 3
+# 📊 Trust Bank - Grupo 3
 
 Uma aplicação para um banco digital, com o objetivo de registrar as principais operações para diferentes níveis de usuários, como clientes e administradores.
 
