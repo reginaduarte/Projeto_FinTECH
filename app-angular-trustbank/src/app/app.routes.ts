@@ -4,5 +4,5 @@ import { BancoComponent } from './pages/trustbank/trustbank.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'trustbank', component: BancoComponent },
+  { path: 'trustbank', component: BancoComponent }
 ];
