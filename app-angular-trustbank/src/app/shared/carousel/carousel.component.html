@@ -1,0 +1,17 @@
+<section class="carousel">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img [src]="'assets/happy.jpg'" alt="Slide 1">
+      </div>
+      <div class="carousel-slide">
+        <img [src]="'assets/team.jpg'" alt="Slide 2">
+      </div>
+      <div class="carousel-slide">
+        <img [src]="'assets/graphic.jpg'" alt="Slide 3">
+      </div>
+    </div>
+    <div class="carousel-indicators">
+      <span class="indicator" *ngFor="let slide of slides; let i = index" [class.active]="i === currentIndex" (click)="goToSlide(i)"></span>
+    </div>
+  </section>
+  

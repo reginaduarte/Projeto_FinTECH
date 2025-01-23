@@ -1,0 +1,12 @@
+<header>
+    <div class="logo">
+      <i class="fas fa-university"></i>
+      <span>Trust Bank</span>
+    </div>
+    <div>
+        <button (click)="openLogin()" class="btn"><i class="fas fa-user"></i> Sou Cliente</button>
+        <app-login *ngIf="showLogin" (close)="closeLogin()"></app-login>
+        <button (click)="openLogin()" class="btn"><i class="fas fa-key"></i> Sou Gerente</button>
+        <app-login *ngIf="showLogin" (close)="closeLogin()"></app-login>
+    </div>
+</header>

@@ -1,0 +1,11 @@
+.banco-container {
+    padding: 20px;
+  }
+  
+  .menu button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
