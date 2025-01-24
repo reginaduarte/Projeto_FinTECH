@@ -1,1 +1,23 @@
-<p>configuracao works!</p>
+<div id="quadrado-container" class="content-section">
+    <div class="edicao-dados-container">
+      <form (ngSubmit)="onSubmit()" class="edicao-dados-form">
+        <h2>Atualize seus Dados Pessoais</h2>
+  
+        <div class="form-group">
+          <label for="telefone"><i class="fas fa-phone"></i>Telefone:</label>
+          <input type="tel" id="telefone" [(ngModel)]="telefone" name="telefone" placeholder="Digite seu telefone" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i>Email:</label>
+          <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="Digite seu email" required />
+        </div>
+  
+        <button type="submit" class="btn-submit">Salvar Alterações</button>
+  
+        <div class="mensagem" *ngIf="mensagem">
+          {{ mensagem }}
+        </div>
+      </form>
+    </div>
+  </div>

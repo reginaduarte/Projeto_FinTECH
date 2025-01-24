@@ -1,1 +1,34 @@
-<p>boleto works!</p>
+<div id="quadrado-container" class="content-section">
+  <div class="boleto-container">
+    <form (ngSubmit)="onSubmit()" class="boleto-form">
+      <h2>Informações do Boleto</h2>
+
+      <div class="form-group">
+        <label for="codigo-barras"><i class="fas fa-barcode"></i>Código de Barras:</label>
+        <input type="text" id="codigo-barras" [(ngModel)]="codigoBarras" name="codigo-barras" placeholder="Digite o código de barras" required />
+      </div>
+
+      <div class="form-row">
+      <div class="form-group">
+        <label for="vencimento"><i class="fas fa-calendar"></i>Data de Vencimento:</label>
+        <input type="date" id="vencimento" [(ngModel)]="vencimento" name="vencimento" required />
+      </div>
+      <div class="form-group">
+        <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
+        <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="senha"><i class="fas fa-key"></i>Senha:</label>
+        <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
+      </div>
+
+      <button type="submit" class="btn-submit">Pagar Boleto</button>
+
+      <div class="mensagem" *ngIf="mensagem">
+        {{ mensagem }}
+      </div>
+    </form>
+  </div>
+</div>

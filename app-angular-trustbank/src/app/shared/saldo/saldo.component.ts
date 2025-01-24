@@ -1,11 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-saldo',
-  imports: [],
   templateUrl: './saldo.component.html',
-  styleUrl: './saldo.component.css'
+  styleUrls: ['./saldo.component.css'],
+  imports: [CommonModule]
 })
 export class SaldoComponent {
-
+  // Exemplo de saldo inicial
+  saldoAtual: number = 5000;  
 }

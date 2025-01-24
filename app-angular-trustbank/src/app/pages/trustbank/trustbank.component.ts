@@ -7,6 +7,6 @@ import { MenuComponent } from "../../shared/menu/menu.component";
   templateUrl: './trustbank.component.html',
   styleUrl: './trustbank.component.css'
 })
-export class BancoComponent {
+export class TrustBankComponent {
 
 }

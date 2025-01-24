@@ -1,1 +1,23 @@
-<p>saque works!</p>
+<div id="quadrado-container" class="content-section">
+  <div class="saque-container">
+    <form (ngSubmit)="onSubmit()" class="saque-form">
+      <h2>Saque</h2>
+
+      <div class="form-group">
+        <label for="valor"><i class="fas fa-cash-register"></i>Saque:</label>
+        <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
+      </div>
+
+      <div class="form-group">
+        <label for="conta"><i class="fas fa-key"></i>Senha:</label>
+        <input type="password" id="password" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
+      </div>
+
+      <button type="submit" class="btn-submit">Sacar</button>
+
+      <div class="mensagem" *ngIf="mensagem">
+        {{ mensagem }}
+      </div>
+    </form>
+  </div>
+</div>

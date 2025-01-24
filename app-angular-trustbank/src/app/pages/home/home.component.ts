@@ -10,6 +10,7 @@ import { SectionComponent } from "../../shared/section/section.component";
 import { CarouselComponent } from "../../shared/carousel/carousel.component";
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,

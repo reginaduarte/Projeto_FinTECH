@@ -1,0 +1,83 @@
+.content-section {
+    width: 100%;
+    max-width: 900px; 
+    padding: 30px; 
+    background-color: #ffffff;
+    border-radius: 15px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+    margin-top: auto;
+  }
+  
+  h2 {
+    color: #002f67;
+    text-align:start;
+    margin-bottom: auto; 
+    font-size: 28px; 
+  }
+  
+  .form-configuracao {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 30px; 
+  }
+  
+  .form-group {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+
+  select {
+    padding: 15px; 
+    font-size: 18px; 
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    transition: border-color 0.3s;
+  }
+  
+  label {
+    font-size: 18px; 
+    font-weight: bold;
+    color: #002f67;
+    margin-bottom: 10px; 
+  }
+  
+  i {
+    margin-right: 5px;
+  }
+  
+  input {
+    padding: 15px; 
+    font-size: 18px; 
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #002f67;
+    outline: none;
+  }
+  
+  .btn-submit {
+    padding: 18px; 
+    font-size: 18px; 
+    background-color: #002f67;
+    color: #fff;
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+    width: 100%;
+  }
+  .mensagem {
+    color: red;
+  }

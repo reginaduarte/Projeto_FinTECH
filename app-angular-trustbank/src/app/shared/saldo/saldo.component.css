@@ -1,0 +1,31 @@
+.content-section {
+    width: 100%;
+    max-width: 900px; 
+    padding: 30px; 
+    background-color: #ffffff;
+    border-radius: 15px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+    margin-top: auto;
+  }
+  
+  .saldo-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .saldo-info {
+    margin-bottom: 20px;
+  }
+  
+  .saldo-info p {
+    font-size: 20px;
+    color: #002f67; /* Cor do texto */
+  }
+  
+  h2 {
+    color: #002f67;
+    text-align:auto;
+    margin-bottom: 20px; 
+    font-size: 28px; 
+  }

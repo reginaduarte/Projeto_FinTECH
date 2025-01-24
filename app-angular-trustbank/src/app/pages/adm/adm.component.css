@@ -1,0 +1,71 @@
+.crud-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f5f5f5;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #002f67;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .crud-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+  }
+  
+  .btn-create {
+    background-color: #28a745;
+  }
+  
+  .btn-create:hover {
+    background-color: #218838;
+  }
+  
+  .btn-read {
+    background-color: #007bff;
+  }
+  
+  .btn-read:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-update {
+    background-color: #ffc107;
+    color: #333;
+  }
+  
+  .btn-update:hover {
+    background-color: #e0a800;
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
