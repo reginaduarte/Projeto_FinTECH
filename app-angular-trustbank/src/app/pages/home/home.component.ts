@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { LoginComponent } from '../../shared/login/login.component';
 import { FooterComponent } from "../../shared/footer/footer.component";
 import { FaqComponent } from "../../shared/faq/faq.component";
 import { QuestionsComponent } from "../../shared/questions/questions.component";

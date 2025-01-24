@@ -1,21 +1,30 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from "../login/login.component";
+import { AdmLoginComponent } from "../admlogin/admlogin.component";
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, LoginComponent],
+  imports: [CommonModule, LoginComponent, AdmLoginComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  showLogin = false;
+  showClientLogin = false;
+  showManagerLogin = false;
 
-  openLogin() {
-    this.showLogin = true;
+  openClientLogin() {
+    this.showClientLogin = true;
+    this.showManagerLogin = false;
+  }
+
+  openManagerLogin() {
+    this.showManagerLogin = true;
+    this.showClientLogin = false;
   }
 
   closeLogin() {
-    this.showLogin = false;
+    this.showClientLogin = false;
+    this.showManagerLogin = false;
   }
 }

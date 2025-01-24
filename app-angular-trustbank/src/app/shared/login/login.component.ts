@@ -13,11 +13,11 @@ import { RouterLink } from '@angular/router';
 export class LoginComponent {
   @Output() close = new EventEmitter<void>();
 
-  username = '';
-  password = '';
+  agencia = '';
+  conta = '';
 
   onSubmit() {
-    console.log('Login realizado:', { username: this.username, password: this.password });
+    console.log('Login realizado:', { agencia: this.agencia, conta: this.conta });
     this.close.emit(); // Fecha o modal após o login
   }
 

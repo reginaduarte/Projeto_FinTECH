@@ -8,19 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AdmComponent {
   //Implementação do CRUD
-  onCreate() {
-    alert('Criar ação clicada!');
-  }
+  onCreate() {}
 
-  onRead() {
-    alert('Ler ação clicada!');
-  }
+  onRead() {}
 
-  onUpdate() {
-    alert('Atualizar ação clicada!');
-  }
+  onUpdate() {}
 
-  onDelete() {
-    alert('Deletar ação clicada!');
-  }
+  onDelete() {}
 }
