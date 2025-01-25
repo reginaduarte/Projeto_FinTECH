@@ -1,0 +1,45 @@
+<div class="margem">
+
+    <h2 class="text-primary text-center">Novo usuário</h2>
+  
+    <form>
+
+        <div class="mb-3">
+            <label class="form-label">Tipo de Usuário:</label>
+            <select class="form-control" name="tipoUsuario" [(ngModel)]="usuario.tipoUsuario">
+              <option value="1">1 - Administrador</option>
+              <option value="2">2 - cliente</option>
+            </select>
+        </div>
+          
+      <div class="mb-3">
+        <label class="form-label"> CPF: </label>
+        <input type="text" class="form-control" name="cpf" [(ngModel)]="usuario.cpf" />
+        <span>{{usuario.cpf}}</span>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label"> NOME: </label>
+        <input type="text" class="form-control" name="nome" [(ngModel)]="usuario.nome"/>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label"> EMAIL: </label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email" />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label"> SENHA: </label>
+        <input type="password" class="form-control" name="senha" [(ngModel)]="usuario.senha" />
+      </div>
+  
+      <div>
+        <button class="btn btn-incluir" (click)="incluir(usuario)">Incluir</button> | 
+        <button class="btn btn-limpar" (click)="Limpar()">Limpar</button> |
+        <button class="btn btn-visualizar" (click)="Visualizar()">Visualizar</button> |  
+        <button class="btn btn-fechar" (click)="fechar()">Fechar</button>
+      </div>
+    </form>
+    <app-visualizar [usuarios]="usuarios" [editarUsuario]="editarUsuario.bind(this)" [deletarUsuario]="deletarUsuario.bind(this)"></app-visualizar>
+  </div>
+  

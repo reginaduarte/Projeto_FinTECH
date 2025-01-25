@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from "../login/login.component";
-import { AdmLoginComponent } from "../admlogin/admlogin.component";
 import { CommonModule } from '@angular/common';
-
+import { LoginComponent } from '../login/login.component';
+import { AdmLoginComponent } from '../admlogin/admlogin.component';
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, LoginComponent, AdmLoginComponent],
+  imports: [CommonModule, AdmLoginComponent, LoginComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

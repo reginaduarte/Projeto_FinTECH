@@ -1,126 +1,135 @@
+/* Estilo da área de login do cliente */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; 
-  }
-  
-  /* Estilo da página de login */
-  .login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .login-card {
-    background-color: #fff;
-    padding: 60px 60px; 
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    max-width: 500px;
-    max-height: 550px;   
-    width: 100%;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  /* Botão de fechar */
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #004080;
-    transition: color 0.3s;
-  }
-  
-  .close-btn:hover {
-    color: #002f67;
-  }
-  
-  /* Logo da marca */
-  .brand-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    font-weight: bold;
-    color: #002f67;
-    margin-bottom: 20px;
-    z-index: 1;
-  }
-  
-  .brand-logo i {
-    margin-right: 12px;
-    color: #004080;
-  }
-  
-  .welcome-message {
-    color: #555;
-    font-size: 18px;
-    margin-bottom: 35px;
-    z-index: 1;
-  }
-  
-  /* Formulário */
-  form {
-    min-width: 400px;
-  }
-  .form-group {
-    margin-bottom: 30px;
-    text-align: left;
-    z-index: 1;
-  }
-  
-  .form-group label {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 8px;
-    display: block;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    font-size: 18px;
-    box-sizing: border-box;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  input[type="text"]:focus {
-    border-color: #004080;
-    outline: none;
-    box-shadow: 0 0 15px rgba(0, 47, 103, 0.3);
-  }
-  
-  .login-btn {
-    width: 100%;
-    padding: 15px;
-    font-size: 20px;
-    background: linear-gradient(135deg, #002f67, #004080);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    z-index: 1;
-  }
-  
-  .login-btn:hover {
-    background: linear-gradient(135deg, #004080, #002f67);
-    transform: scale(1.05);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-card {
+  background-color: #fff;
+  padding: 40px 40px; /* Reduzido de 60px para 40px */
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  max-width: 500px;
+  max-height: 600px;   
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Botão de fechar */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #004080;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #002f67;
+}
+
+/* Logo da marca */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #002f67;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+i {
+  margin-right: 12px;
+  color: #004080;
+}
+
+.welcome-message {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 35px;
+  z-index: 1;
+}
+
+/* Formulário */
+form {
+  min-width: 300px; 
+}
+.form-group {
+  margin-bottom: 20px; 
+  text-align: left;
+  z-index: 1;
+}
+
+.form-group label {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+  display: block;
+}
+
+input[type="number"], [type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 18px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="number"]:focus, input[type="password"]:focus {
+  border-color: #004080;
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 47, 103, 0.3);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  background: linear-gradient(135deg, #002f67, #004080);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  z-index: 1;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #004080, #002f67);
+  transform: scale(1.05);
+}
+
+#icon {
+  margin-right: 5px;
+  color: #000;
+}
+
+.error-message {
+  color: red;
+}

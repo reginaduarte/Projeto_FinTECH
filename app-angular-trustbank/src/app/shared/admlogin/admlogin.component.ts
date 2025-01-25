@@ -1,29 +1,41 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AdmService } from '../../services/adm.service';
 
 @Component({
-  selector: 'app-admlogin', // Certifique-se de que o seletor é este
-  standalone: true, // Certifique-se de que está configurado como standalone
-  imports: [CommonModule, RouterLink, FormsModule],
+  selector: 'app-admlogin',
   templateUrl: './admlogin.component.html',
   styleUrls: ['./admlogin.component.css'],
+  imports: [FormsModule, CommonModule]
 })
 export class AdmLoginComponent {
   @Output() close = new EventEmitter<void>();
 
-  username = '';
-  password = '';
+  emailUsuario!: string;
+  senhaUsuario!: string;
+  mensagemErro!: string;
 
-  onSubmit() {
-    console.log('Login do administrador realizado:', {
-      username: this.username,
-      password: this.password,
+  constructor(private admService : AdmService, private router: Router) { }
+
+  // Função chamada quando o usuário tenta fazer login
+  login(): void {
+    this.admService.login(this.emailUsuario, this.senhaUsuario).subscribe({
+      next: (response) => {
+        console.log('Login bem-sucedido!', response);
+        this.router.navigate(['/adm']);  
+      },
+      error: (err) => {
+        console.error('Erro de login', err);
+        if (err.status === 401) {
+          this.mensagemErro = 'Credenciais inválidas!';  // Exibe uma mensagem de erro
+        } else {
+          this.mensagemErro = 'Ocorreu um erro ao tentar fazer login. Tente novamente mais tarde.';
+        }
+      }
     });
-    this.close.emit(); // Fecha o modal após o login
   }
-
   closeLogin() {
     this.close.emit(); // Emite o evento para fechar o modal
   }

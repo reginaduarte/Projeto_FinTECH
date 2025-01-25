@@ -12,10 +12,12 @@ import { SaldoComponent } from './shared/saldo/saldo.component';
 import { ConfiguracaoComponent } from './shared/configuracao/configuracao.component';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { AdmComponent } from './pages/adm/adm.component';
+import { FormComponent } from './shared/form/form.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'adm', component: AdmComponent },
+  {path: 'form', component: FormComponent },
   {
     path: 'trustbank',
     component: TrustBankComponent, 
