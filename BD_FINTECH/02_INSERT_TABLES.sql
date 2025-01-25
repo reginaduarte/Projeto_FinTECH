@@ -28,12 +28,21 @@ INSERT INTO TARIFA (ID_TRANSACAO, VALOR_TARIFA, DATA_TARIFA) VALUES
 (3, 3.00, '2024-12-20')
 GO
 
--- Inserindo dados na tabela BOLETO
+-- Inserindo dados na tabela BOLETO -- ANTIGO
 INSERT INTO BOLETO (ID_TRANSACAO, CODIGO_BOLETO, DATA_VENCIMENTO) VALUES 
 (3, '294948906830748006423700', '2025-01-10')
 GO
 
--- Inserindo dados na tabela TRANSACAO
+-- Inserindo dados na tabela BOLETO
+INSERT INTO BOLETO (CODIGO_BOLETO, DATA_VENCIMENTO, VALOR_BOLETO) VALUES 
+('642370083074294948906800', '2025-01-11', 150)
+GO
+
+SELECT * FROM BOLETO
+
+
+
+-- Inserindo dados na tabela TRANSACAO -- ANTIGO
 INSERT INTO TRANSACAO (TIPO_TRANSACAO, VALOR, DATA_TRANSACAO, DESCRICAO, ID_CONTA_ORIGEM, ID_CONTA_DESTINO) VALUES 
 (0, 150.00, '2025-01-01', 'Transferência para Maria', 1, 2),
 (2, 200.00, '2024-12-20', 'Depósito na conta de Matheus', 2, 1),
@@ -66,3 +75,4 @@ INSERT INTO ENDERECO (ID_USUARIO, CEP, LOGRADOURO, BAIRRO, NUMERO, CIDADE, ESTAD
 ('2', '32920971', 'Rua Primeiro de Maio', 'Centro', '13', 'São Joaquim de Bicas', 'Minas Gerais', 'MG'),
 ('3', '86155970', 'Rua Emílio Solcia', 'Centro', '40', 'Esperança do Norte', 'Paraná', 'PR')
 GO
+
