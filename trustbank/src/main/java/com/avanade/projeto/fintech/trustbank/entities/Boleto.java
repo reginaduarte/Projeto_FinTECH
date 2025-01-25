@@ -1,5 +1,6 @@
 package com.avanade.projeto.fintech.trustbank.entities;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,6 +26,10 @@ public class Boleto {
 	@Column(name = "ID_BOLETO")
 	private int idBoleto;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_TRANSACAO")
+	private Transacao transacao;
+	
 	@Column(name = "CODIGO_BOLETO")
 	private String codigoBoleto;
 	
@@ -33,11 +38,11 @@ public class Boleto {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataVencimento;
 	
-	//idTransacao vem da classe Transacao
+	@Column(name = "VALOR_BOLETO")
+	private BigDecimal valorBoleto;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_TRANSACAO")
-	private Transacao transacao;
+	@Column(name = "STATUS_BOLETO")
+	private Integer statusBoleto;
 	
 	
 	public int getIdBoleto() {
@@ -58,6 +63,28 @@ public class Boleto {
 	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
+	public BigDecimal getValorBoleto() {
+		return valorBoleto;
+	}
+	public void setValorBoleto(BigDecimal valorBoleto) {
+		this.valorBoleto = valorBoleto;
+	}
+	public Integer getStatusBoleto() {
+		return statusBoleto;
+	}
+	public void setStatusBoleto(Integer statusBoleto) {
+		this.statusBoleto = statusBoleto;
+	}
+	public Transacao getTransacao() {
+		return transacao;
+	}
+	public void setTransacao(Transacao transacao) {
+		this.transacao = transacao;
+	}
+
+
+	
+	
 	
 	
 }

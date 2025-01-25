@@ -45,7 +45,6 @@ public class Usuario {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataCriacao;
 
-	
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)  
 	private Conta conta;
 	 

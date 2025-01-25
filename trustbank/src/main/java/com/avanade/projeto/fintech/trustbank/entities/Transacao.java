@@ -1,14 +1,12 @@
 package com.avanade.projeto.fintech.trustbank.entities;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,21 +34,20 @@ public class Transacao {
 	@Column(name = "DATA_TRANSACAO")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private Date dataTransacao;
+	private LocalDateTime dataTransacao;
 	
 	@Column(name = "DESCRICAO")
 	private String descricaoTransacao;
+
+	@ManyToOne // Muitos para um - Uma transação está associada a uma conta
+    @JoinColumn(name = "ID_CONTA", nullable = false)  
+    private Conta conta;
 	
-
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_CONTA_ORIGEM")
-	private Conta contaOrigem;
-
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_CONTA_DESTINO")
-	private Conta contaDestino;
+	@Column(name = "COD_OPERACAO")
+	private Integer codOperacao;
+	
+	@Column(name = "TIPO_OPERACAO")
+	private Integer tipoOperacao;
 	
 	
 	public int getIdTransacao() {
@@ -77,26 +74,34 @@ public class Transacao {
 	public void setDescricaoTransacao(String descricaoTransacao) {
 		this.descricaoTransacao = descricaoTransacao;
 	}
-	public Date getDataTransacao() {
+	public LocalDateTime getDataTransacao() {
 		return dataTransacao;
 	}
-	public void setDataTransacao(Date dataTransacao) {
+	public void setDataTransacao(LocalDateTime dataTransacao) {
 		this.dataTransacao = dataTransacao;
 	}
-	public Conta getContaOrigem() {
-		return contaOrigem;
+	public Conta getConta() {
+		return conta;
 	}
-	public void setContaOrigem(Conta contaOrigem) {
-		this.contaOrigem = contaOrigem;
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
-	public Conta getContaDestino() {
-		return contaDestino;
+	public Integer getCodOperacao() {
+		return codOperacao;
 	}
-	public void setContaDestino(Conta contaDestino) {
-		this.contaDestino = contaDestino;
+	public void setCodOperacao(Integer codOperacao) {
+		this.codOperacao = codOperacao;
+	}
+	public Integer getTipoOperacao() {
+		return tipoOperacao;
+	}
+	public void setTipoOperacao(Integer tipoOperacao) {
+		this.tipoOperacao = tipoOperacao;
 	}
 	
 
+
+	
 	
 	
 }

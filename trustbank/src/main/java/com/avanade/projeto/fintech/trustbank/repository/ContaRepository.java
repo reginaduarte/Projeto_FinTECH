@@ -7,14 +7,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.avanade.projeto.fintech.trustbank.dto.ExtratoDTO;
 import com.avanade.projeto.fintech.trustbank.dto.UsuarioContaDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Conta;
 
+@Repository
 public interface ContaRepository extends JpaRepository<Conta, Integer> {
 
-	// 1) Consulta Nativa SQL - Consultar todas as contas com CPF
+	// 1) Consulta Nativa SQL - Consultar todas as contas com CPF (SUGESTÃO FUNÇÃO ADMIN)
 
 	@Query(value = "SELECT \r\n" 
 			+ " u.NOME, u.CPF, c.ID_CONTA, \r\n" + " c.NUMERO_CONTA, c.AGENCIA, \r\n"
@@ -26,7 +28,7 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 			+ " FROM CONTA c INNER JOIN USUARIO u ON u.ID_USUARIO = c.ID_USUARIO", nativeQuery = true)
 	List<UsuarioContaDTO> listarContas();
 
-	// 2) Consulta Nativa SQL - Consultar todas as contas POR CPF
+	// 2) Consulta Nativa SQL - Consultar todas as contas POR CPF (SUGESTÃO FUNÇÃO ADMIN)
 
 	@Query(value = "SELECT u.NOME, u.CPF, c.ID_CONTA, c.NUMERO_CONTA, c.AGENCIA, c.TIPO_CONTA, c.SALDO, \r\n"
 			+ " c.DATA_ABERTURA \r\n"
@@ -49,9 +51,9 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 			+ "	t.VALOR, \r\n"
 			+ "	t.DATA_TRANSACAO,\r\n" 
 			+ "	t.DESCRICAO,\r\n" 
-			+ "	t.ID_CONTA_DESTINO \r\n"
+			+ "	t.ID_CONTA \r\n"
 			+ "	FROM CONTA c INNER JOIN TRANSACAO t \r\n"
-			+ "	ON c.ID_CONTA = t.ID_CONTA_ORIGEM WHERE c.ID_CONTA = :valorconta", nativeQuery = true)
+			+ "	ON c.ID_CONTA = t.ID_CONTA WHERE c.ID_CONTA = :valorconta", nativeQuery = true)
 	List<ExtratoDTO> gerarExtrato(@Param("valorconta") int numConta);
 	
 
@@ -65,5 +67,23 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 	@Query(value = "UPDATE Conta c SET c.SALDO = c.SALDO + :valor WHERE c.ID_CONTA = :idconta", nativeQuery = true)
 	void creditarConta(@Param("idconta") int idConta, @Param("valor") BigDecimal valor);
 	
+	
+	// 5) Consulta Nativa SQL - Consulta de saldo por CPF
+	
+	@Query(value = "SELECT NOME, c.SALDO FROM USUARIO u INNER JOIN CONTA c ON u.ID_USUARIO = c.ID_USUARIO\r\n"
+			+ " where u.CPF = :valorcpf", nativeQuery = true)
+	List<Conta> consultarSaldoPorCPF(@Param("valorcpf") String cpf);
+	
+	
+	// 6) Método para buscar uma conta pelo ID da conta
+    
+		Conta findByIdConta(int idConta);
+		
+	// 7) Método para buscar uma conta pelo número e agência da conta
+		
+		Conta findByNumAgenciaAndNumeroConta(int numAgencia, int numeroConta);
+		
+		
+
 
 }

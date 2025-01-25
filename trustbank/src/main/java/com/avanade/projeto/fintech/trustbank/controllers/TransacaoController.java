@@ -1,13 +1,11 @@
 package com.avanade.projeto.fintech.trustbank.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,19 +49,19 @@ public class TransacaoController {
 		}
 	}
 	
-	// 3 - Operação da transação
-	
-	@PostMapping("/{idContaOrigem}/{idContaDestino}/{valor}")
-	public ResponseEntity<String> transferir(@PathVariable int idContaOrigem, @PathVariable int idContaDestino, @PathVariable BigDecimal valor){
-		
-		try {
-			transacaoService.transferirValor(idContaOrigem, idContaDestino, valor);
-			return ResponseEntity.ok("Transferência realizada com sucesso.");
-		} catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro " + e.getMessage());
-		}
-
-	}
+//	// 3 - Operação da transação
+//	
+//	@PostMapping("/{idContaOrigem}/{idContaDestino}/{valor}")
+//	public ResponseEntity<String> transferir(@PathVariable int idContaOrigem, @PathVariable int idContaDestino, @PathVariable BigDecimal valor){
+//		
+//		try {
+//			transacaoService.transferirValor(idContaOrigem, idContaDestino, valor);
+//			return ResponseEntity.ok("Transferência realizada com sucesso.");
+//		} catch(Exception e) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro " + e.getMessage());
+//		}
+//
+//	}
 	
 	
 }

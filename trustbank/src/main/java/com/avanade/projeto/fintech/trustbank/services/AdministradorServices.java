@@ -19,6 +19,11 @@ public class AdministradorServices {
 		return administradorRepository.findAll(); 
 	}
 	
+	// Adicionado o método para validar as credenciais de login
+	public Administrador validarCredenciais(String email, String senha) {
+	    return administradorRepository.findByEmailUsuarioAndSenhaUsuario(email, senha).orElse(null);
+	}
+	
 	public Administrador incluirAdmin(Administrador admin) {
 		return administradorRepository.save(admin);
 	}

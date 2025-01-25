@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.avanade.projeto.fintech.trustbank.dto.LoginDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Usuario;
 import com.avanade.projeto.fintech.trustbank.services.UsuarioServices;
 
@@ -47,5 +48,17 @@ public class UsuarioController {
 
 		}
 	}
+	
 
+	// Adicionado o método para autenticação do login
+	@PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginRequest) {
+        Usuario usuario = usuarioService.autenticarUsuario(loginRequest);
+        if (usuario != null) {
+            return ResponseEntity.ok("Login realizado com sucesso!"); 
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
+        }
+    }
+	
 }

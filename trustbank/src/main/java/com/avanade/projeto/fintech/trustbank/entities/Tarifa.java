@@ -31,8 +31,6 @@ public class Tarifa {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date dataTarifa;
 	
-	//idTransacao vem da classe Transacao
-	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_TRANSACAO")
 	private Transacao transacao;

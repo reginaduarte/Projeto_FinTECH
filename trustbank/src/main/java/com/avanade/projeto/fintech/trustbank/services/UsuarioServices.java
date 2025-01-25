@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avanade.projeto.fintech.trustbank.dto.LoginDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Usuario;
 import com.avanade.projeto.fintech.trustbank.repository.UsuarioRepository;
 
@@ -35,7 +36,16 @@ public class UsuarioServices {
 	public Usuario incluirUsuario(Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
+
 	
-	
-	
+	// Adicionado o método para validar as credenciais de login
+	// Método para autenticar
+    public Usuario autenticarUsuario(LoginDTO loginRequest) {
+        return usuarioRepository.findByNumeroContaAndNumAgenciaAndSenhaUsuario(
+                loginRequest.getNumeroConta(),
+                loginRequest.getNumAgencia(),
+                loginRequest.getSenhaUsuario()
+        ).orElse(null);  // Retorna null caso as credenciais sejam inválidas
+    }
+
 }

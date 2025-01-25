@@ -14,11 +14,11 @@ public class UsuarioContaDTO {
 	private BigDecimal saldoConta;
 	private Date dataAbertura;
 	
-	public UsuarioContaDTO(String nomeUsuario, String cpfUsuario, int idConta, int numeroConta, int numAgencia,
+	public UsuarioContaDTO(String nomeUsuario, String cpfUsuario,int idConta, int numeroConta, int numAgencia,
 			String tipoConta, BigDecimal saldoConta, Date dataAbertura) {
 		super();
 		this.setNomeUsuario(nomeUsuario);	
-		this.setCpfUsuario(cpfUsuario);;
+		this.setCpfUsuario(cpfUsuario);
 		this.setIdConta(idConta);
 		this.setNumeroConta(numeroConta);
 		this.setNumAgencia(numAgencia);

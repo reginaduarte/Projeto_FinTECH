@@ -1,5 +1,6 @@
 package com.avanade.projeto.fintech.trustbank.controllers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avanade.projeto.fintech.trustbank.dto.ExtratoDTO;
 import com.avanade.projeto.fintech.trustbank.dto.UsuarioContaDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Conta;
+import com.avanade.projeto.fintech.trustbank.entities.Transacao;
 import com.avanade.projeto.fintech.trustbank.services.ContaServices;
+import com.avanade.projeto.fintech.trustbank.services.TransacaoServices;
 
 
 @RestController
@@ -24,6 +28,9 @@ public class ContaController {
 
 	@Autowired
 	private ContaServices contaService;
+	
+	@Autowired
+	private TransacaoServices transacaoService;
 	
 	// 1) Consulta Nativa SQL - Consultar todas as contas com CPF
 	@GetMapping("/lista")
@@ -65,7 +72,55 @@ public class ContaController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
+		
+		// 5) Consulta Nativa SQL - Consulta de saldo de conta por CPF
+		
+		@GetMapping("/saldo/{cpf}")
+		public ResponseEntity<List<Conta>> consultarSaldoPorCPF(@PathVariable("cpf") String cpf){
+			return new ResponseEntity<List<Conta>>(
+					contaService.consultarSaldoPorCPF(cpf), HttpStatus.OK);
+		}
+		
+		
+		// 6) Verificar se há saldo suficiente na Conta para efetuar uma transação
+		
+		@GetMapping("/verificarSaldo")
+	    public String verificarSaldo(@RequestParam int idConta, @RequestParam BigDecimal valor) {
+	        return contaService.verificarSaldoSuficiente(idConta, valor);
+	    }
+		
+		// 6) Realização da transação
+		
+	    @PostMapping("/realizarTransacao")
+	    public Transacao realizarTransacaoDebitar(@RequestParam int idConta, 
+	    		@RequestParam BigDecimal valor, 
+	    		@RequestParam int tipoTransacao, 
+	    		@RequestParam String descricaoTransacao ) {
+	        return transacaoService.realizarTransacaoDebitar(idConta, valor, tipoTransacao, descricaoTransacao);
+	    }
 	
-
-	
+	    // 7) Transferência para outra conta existente no sistema
+	    
+	    @PostMapping("/transferir")
+	    public Transacao transferirParaOutraConta(@RequestParam int idConta, @RequestParam int numeroAgenciaDestino, 
+	    @RequestParam int numeroContaDestino, @RequestParam BigDecimal valor, 
+	    @RequestParam String descricaoTransacao) {
+	    	
+	    	return transacaoService.transferirParaOutraConta(idConta, numeroAgenciaDestino, 
+	    			numeroContaDestino, valor, descricaoTransacao);
+	    
+	    }
+	    
+	    // 8) Fazer saque
+	    @PostMapping("/saque")
+	    public Transacao fazerSaque(@RequestParam int idConta, 
+	    		@RequestParam BigDecimal valor, 
+	    		@RequestParam int tipoTransacao, 
+	    		@RequestParam String descricaoTransacao) {
+	    	
+	    	return transacaoService.realizarTransacaoDebitar(idConta, valor, tipoTransacao, descricaoTransacao);
+	    	
+	    }
+	    
 }
+

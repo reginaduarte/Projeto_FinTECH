@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +26,7 @@ public class Conta {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_CONTA")
+	@Column(name = "ID_CONTA", nullable = false)
 	private int idConta;
 	
 	@Column(name = "NUMERO_CONTA")
@@ -49,17 +47,11 @@ public class Conta {
 	private Date dataAbertura;  
 	
 	@OneToOne
-	@JoinColumn(name = "ID_USUARIO", nullable = false)  // Relacionamento 1-1 com a tabela USUARIO
+	@JoinColumn(name = "ID_USUARIO", nullable = false)  
 	private Usuario usuario;
 	
-	@JsonManagedReference
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaOrigem")
-	private List<Transacao> transacoesDebito; // Transações de débito - saídas
-	
-	@JsonManagedReference
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "contaDestino")
-	private List<Transacao> transacoesCredito; // Transações de crédito - entradas
-	
+	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL) // um para muitos (uma conta pode ter várias transações)
+	private List<Transacao> transacoes;
 
 	public int getIdConta() {
 		return idConta;
@@ -96,18 +88,6 @@ public class Conta {
 	}
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
-	}
-	public List<Transacao> getTransacoesDebito() {
-		return transacoesDebito;
-	}
-	public void setTransacoesDebito(List<Transacao> transacoesDebito) {
-		this.transacoesDebito = transacoesDebito;
-	}
-	public List<Transacao> getTransacoesCredito() {
-		return transacoesCredito;
-	}
-	public void setTransacoesCredito(List<Transacao> transacoesCredito) {
-		this.transacoesCredito = transacoesCredito;
 	}
 	
 	

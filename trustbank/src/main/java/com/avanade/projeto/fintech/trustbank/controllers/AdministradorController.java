@@ -31,6 +31,17 @@ public class AdministradorController {
 				HttpStatus.OK);
 	}
 	
+	// Adicionado o método para autenticação do login
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody Administrador loginRequest) {
+	    Administrador admin = adminService.validarCredenciais(loginRequest.getEmailUsuario(), loginRequest.getSenhaUsuario());
+	    if (admin != null) {
+	        return ResponseEntity.ok("Login realizado com sucesso!"); 
+	    } else {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
+	    }
+	}
+	
 	@PostMapping("/novo")
 	public ResponseEntity<?> incluir(@RequestBody Administrador admin){
 		try {
@@ -44,4 +55,6 @@ public class AdministradorController {
 			
 		}
 	}
+	
+	// Adicionar o Put e Delete
 }

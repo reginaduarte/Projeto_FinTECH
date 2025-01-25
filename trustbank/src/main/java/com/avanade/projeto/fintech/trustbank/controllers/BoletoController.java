@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avanade.projeto.fintech.trustbank.entities.Boleto;
+import com.avanade.projeto.fintech.trustbank.entities.Transacao;
 import com.avanade.projeto.fintech.trustbank.services.BoletoServices;
 
 @RestController
@@ -21,6 +23,8 @@ public class BoletoController {
 
 	@Autowired
 	private BoletoServices boletoService;
+	
+	
 	
 	@GetMapping("/lista")
 	public ResponseEntity<List<Boleto>> listarBoletos(){
@@ -39,8 +43,23 @@ public class BoletoController {
 			
 		} catch (Exception e) {
 			
+			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			
 		}
+	
 	}
+	
+	@PostMapping("/processar")
+	public ResponseEntity<?> processsarBoleto(@RequestParam int idConta, 
+			@RequestParam String codigoBoleto, 
+			@RequestParam String descricaoTransacao) {
+			
+			return new ResponseEntity<Transacao>
+			(boletoService.processarBoleto(idConta, codigoBoleto, descricaoTransacao), HttpStatus.CREATED);
+	
+	}
+	
+	
 }
+
