@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css'], 
   imports: [FormsModule, CommonModule]
 })
 export class LoginComponent {
@@ -37,7 +37,8 @@ export class LoginComponent {
       }
     });
   }
+
   closeLogin() {
-    this.close.emit(); // Emite o evento para fechar o modal
+    this.close.emit();
   }
 }

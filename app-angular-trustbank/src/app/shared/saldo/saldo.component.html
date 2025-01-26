@@ -1,9 +1,8 @@
 <div id="quadrado-container" class="content-section">
   <div class="saldo-container">
-    <h2>Consulta de Saldo</h2>
-
+    <h2>Saldo Atual</h2>
     <div class="saldo-info">
-      <p><strong>Saldo Atual:</strong> R$ {{ saldoAtual | currency:'BRL':'symbol' }}</p>
+      <p><strong>{{ saldo | currency:'BRL':'symbol' }}</strong></p>
     </div>
   </div>
 </div>
