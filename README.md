@@ -22,7 +22,7 @@ Uma aplicação para um banco digital, com o objetivo de registrar as principais
 - **Saldos e Extratos:**
   - Mostrar o saldo atual do cliente, enquanto a opção de extrato deve apresentar as últimas transações, levando em conta uma data de início válida.
 
-## 🎨 Prévia do Design
+## 🎨 Protótipo do Design
 
 Para mais detalhes, confira o projeto no [Figma](https://www.figma.com/design/KNNAcFsW2qt6e4VIaMNx2W/Pr%C3%A9via-do-Design?node-id=0-1&t=0FgmkUWauFz4wMdu-1).
 
