@@ -1,5 +1,6 @@
 package com.avanade.projeto.fintech.trustbank.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.avanade.projeto.fintech.trustbank.entities.Usuario;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	// 1) Consulta SQL Nativa - Consulta de usuários
 	
@@ -28,7 +29,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 		
 		
 	// Adicionado para buscar email e senha
-	    @Query("SELECT u FROM Usuario u WHERE u.conta.numeroConta = :numeroConta AND u.conta.numAgencia = :numAgencia AND u.senhaUsuario = :senhaUsuario")
-	    Optional<Usuario> findByNumeroContaAndNumAgenciaAndSenhaUsuario(int numeroConta, int numAgencia, String senhaUsuario);
+	@Query("SELECT u FROM Usuario u WHERE u.conta.numeroConta = :numeroConta AND u.conta.numAgencia = :numAgencia AND u.senhaUsuario = :senhaUsuario")
+	Optional<Usuario> findByNumeroContaAndNumAgenciaAndSenhaUsuario(int numeroConta, int numAgencia, String senhaUsuario);
+
+	// Adicionado para buscar o saldo a partir do idConta
+	@Query("SELECT c.saldoConta FROM Conta c WHERE c.idConta = :idConta")
+	Optional<BigDecimal> findSaldoByIdConta(@Param("idConta") int idConta);
 
 }

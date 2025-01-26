@@ -7,6 +7,8 @@ public class UsuarioContaDTO {
 
 	private String nomeUsuario;
 	private String cpfUsuario;
+	private String telefoneUsuario;
+	private String emailUsuario;
 	private int idConta;
 	private int numeroConta;
 	private int numAgencia;
@@ -14,11 +16,13 @@ public class UsuarioContaDTO {
 	private BigDecimal saldoConta;
 	private Date dataAbertura;
 	
-	public UsuarioContaDTO(String nomeUsuario, String cpfUsuario,int idConta, int numeroConta, int numAgencia,
+	public UsuarioContaDTO(String nomeUsuario, String cpfUsuario, String telefoneUsuario, String emailUsuario, int idConta, int numeroConta, int numAgencia,
 			String tipoConta, BigDecimal saldoConta, Date dataAbertura) {
 		super();
 		this.setNomeUsuario(nomeUsuario);	
 		this.setCpfUsuario(cpfUsuario);
+		this.setTelefoneUsuario(telefoneUsuario);
+		this.setEmailUsuario(emailUsuario);
 		this.setIdConta(idConta);
 		this.setNumeroConta(numeroConta);
 		this.setNumAgencia(numAgencia);
@@ -85,6 +89,18 @@ public class UsuarioContaDTO {
 
 	public void setIdConta(int idConta) {
 		this.idConta = idConta;
+	}
+	public String getTelefoneUsuario() {
+		return telefoneUsuario;
+	}
+	public void setTelefoneUsuario(String telefoneUsuario) {
+		this.telefoneUsuario = telefoneUsuario;
+	}
+	public String getEmailUsuario() {
+		return emailUsuario;
+	}
+	public void setEmailUsuario(String emailUsuario) {
+		this.emailUsuario = emailUsuario;
 	}
 	
 	

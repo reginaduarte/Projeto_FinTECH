@@ -90,7 +90,4 @@ public class ExtratoDTO {
 		this.idContaDestino = idContaDestino;
 	}
 	
-	
-	
-	
 }

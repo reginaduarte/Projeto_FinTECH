@@ -44,6 +44,9 @@ public class Usuario {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date dataCriacao;
+	
+	@Column(name = "TELEFONE")
+	private String telefoneUsuario;
 
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)  
 	private Conta conta;
@@ -91,8 +94,18 @@ public class Usuario {
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+	public Conta getConta() {
+		return conta;
+	}
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+	public String getTelefoneUsuario() {
+		return telefoneUsuario;
+	}
+	public void setTelefoneUsuario(String telefoneUsuario) {
+		this.telefoneUsuario = telefoneUsuario;
+	}
 	
-	
-
 	
 }

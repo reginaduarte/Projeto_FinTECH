@@ -83,7 +83,6 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 		
 		Conta findByNumAgenciaAndNumeroConta(int numAgencia, int numeroConta);
 		
-		
 
 
 }
