@@ -3,24 +3,31 @@
     <form (ngSubmit)="onSubmit()" class="deposito-form">
       <h2>Depósito</h2>
       <div class="form-row">
-      <div class="form-group">
-        <label for="conta"><i class="fas fa-university"></i>Conta:</label>
-        <input type="text" id="conta" [(ngModel)]="conta" name="conta" placeholder="Digite o número da conta" required />
-      </div>
-      <div class="form-group">
-        <label for="agencia"><i class="fas fa-building"></i>Agência:</label>
-        <input type="text" id="agencia" [(ngModel)]="agencia" name="agencia" placeholder="Digite o número da agência" required />
-      </div>
-    </div>
-
-      <div class="form-group">
-        <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
-        <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
+        <div class="form-group">
+          <label for="conta"><i class="fas fa-university"></i>Conta:</label>
+          <input type="text" id="conta" [(ngModel)]="numeroConta" name="numeroConta" placeholder="Digite o número da conta" required readonly />
+        </div>
+        <div class="form-group">
+          <label for="agencia"><i class="fas fa-building"></i>Agência:</label>
+          <input type="text" id="agencia" [(ngModel)]="numAgencia" name="numAgencia" placeholder="Digite o número da agência" required readonly />
+        </div>
       </div>
 
+      <div class="form-row">
+        <div class="form-group">
+          <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
+          <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
+        </div>
+
+        <div class="form-group">
+          <label for="senha"><i class="fas fa-key"></i>Senha:</label>
+          <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
+        </div>
+      </div>
+
       <div class="form-group">
-        <label for="senha"><i class="fas fa-key"></i>Senha:</label>
-        <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
+        <label for="descricao"><i class="fa fa-comment"></i>Descrição:</label>
+        <input type="text" id="descricao" [(ngModel)]="descricao" name="descricao" placeholder="Informe uma descrição" required />
       </div>
 
       <button type="submit" class="btn-submit">Depositar</button>

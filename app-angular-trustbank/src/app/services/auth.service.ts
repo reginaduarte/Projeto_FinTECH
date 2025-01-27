@@ -7,7 +7,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthService {
   private loginUrl = 'http://localhost:8080/users/login';
-  private idConta: number = 0; 
+  private idConta: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +27,8 @@ export class AuthService {
   storeUserData(response: any): void {
     // Armazenando os dados no localStorage
     localStorage.setItem('idConta', response.idConta.toString());
+    localStorage.setItem('numeroConta', response.numeroConta.toString());  // Adicionando numeroConta
+    localStorage.setItem('numAgencia', response.numAgencia.toString());      // Adicionando numAgencia
     localStorage.setItem('nomeUsuario', response.nomeUsuario);
     localStorage.setItem('cpfUsuario', response.cpfUsuario);
     localStorage.setItem('telefoneUsuario', response.telefoneUsuario);
@@ -39,6 +41,8 @@ export class AuthService {
   getUserData(): any {
     return {
       idConta: localStorage.getItem('idConta'),
+      numeroConta: localStorage.getItem('numeroConta'),  // Recuperando numeroConta
+      numAgencia: localStorage.getItem('numAgencia'),    // Recuperando numAgencia
       nomeUsuario: localStorage.getItem('nomeUsuario'),
       cpfUsuario: localStorage.getItem('cpfUsuario'),
       telefoneUsuario: localStorage.getItem('telefoneUsuario'),
@@ -51,5 +55,13 @@ export class AuthService {
 
   getIdConta(): number {
     return Number(localStorage.getItem('idConta'));  
+  }
+
+  getNumeroConta(): number {
+    return Number(localStorage.getItem('numeroConta'));  // Método para pegar o numeroConta
+  }
+
+  getNumAgencia(): number {
+    return Number(localStorage.getItem('numAgencia'));    // Método para pegar o numAgencia
   }
 }

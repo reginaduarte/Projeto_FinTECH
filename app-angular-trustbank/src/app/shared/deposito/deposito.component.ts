@@ -1,35 +1,59 @@
+import { Component, OnInit } from '@angular/core';
+import { TransacaoService } from '../../services/transacao.service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-deposito',
   templateUrl: './deposito.component.html',
   styleUrls: ['./deposito.component.css'],
-  imports: [FormsModule, CommonModule]
+  imports: [CommonModule, FormsModule]
 })
-export class DepositoComponent {
-  conta: string = '';
-  agencia: string = '';
+export class DepositoComponent implements OnInit {
+  numeroConta: string = '';
+  numAgencia: string = '';
   valor: number = 0;
   senha: string = '';
+  descricao: string = '';
   mensagem: string = '';
 
-  // Método para simular o depósito
+  constructor(private transacaoService: TransacaoService, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    // Pegando os dados de conta e agência do localStorage
+    this.numeroConta = this.authService.getNumeroConta().toString();
+    this.numAgencia = this.authService.getNumAgencia().toString();
+  }
+
+  // Método para realizar o depósito
   onSubmit() {
-    if (this.conta && this.agencia && this.valor > 0 && this.senha) {
-      this.mensagem = `Depósito de R$ ${this.valor.toFixed(2)} realizado com sucesso para a conta ${this.conta}, agência ${this.agencia}!`;
-      this.resetForm();
-    } else {
-      this.mensagem = 'Por favor, preencha todos os campos corretamente.';
-    }
+    // Montando o objeto para enviar à API
+    const depositoData = {
+      idConta: this.authService.getIdConta(),  // Pega o idConta do localStorage
+      valor: this.valor,                       // Valor do depósito
+      tipoTransacao: 2,                        // Tipo de transação (2 - Depósito)
+      descricaoTransacao: this.descricao      // Descrição da transação
+    };
+
+    // Chamando o serviço de transação para realizar o depósito
+    this.transacaoService.depositar(depositoData).subscribe(
+      (response) => {
+        this.mensagem = `Depósito de R$ ${this.valor.toFixed(2)} realizado com sucesso para a conta ${this.numeroConta}, agência ${this.numeroConta}!`;
+        console.log('Resposta do servidor:', response);
+        this.resetForm();
+      },
+      (error) => {
+        this.mensagem = 'Erro ao realizar o depósito. Verifique os dados.';
+        console.error('Erro:', error);
+      }
+    );
   }
 
   // Método para limpar o formulário
   resetForm() {
-    this.conta = '';
-    this.agencia = '';
     this.valor = 0;
     this.senha = '';
+    this.descricao = '';
   }
 }
