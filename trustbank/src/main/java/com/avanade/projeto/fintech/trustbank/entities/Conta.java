@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -47,8 +48,10 @@ public class Conta {
 	private Date dataAbertura;  
 	
 	@OneToOne
+	@JsonIgnore
 	@JoinColumn(name = "ID_USUARIO", nullable = false)  
 	private Usuario usuario;
+	
 	
 	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL) // um para muitos (uma conta pode ter várias transações)
 	private List<Transacao> transacoes;
@@ -89,12 +92,12 @@ public class Conta {
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+//	public Usuario getUsuario() {
+//		return usuario;
+//	}
+//	public void setUsuario(Usuario usuario) {
+//		this.usuario = usuario;
+//	}
 	
 	
 }

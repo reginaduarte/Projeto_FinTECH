@@ -126,6 +126,40 @@ public class TransacaoServices {
  		
  	}
     
+ 	
+ // Método para realizar uma transação de crédito (depósito)
+ 	public Transacao realizarTransacaoCreditar(int idConta, BigDecimal valor, 
+ 	        int tipoTransacao, String descricaoTransacao) {
+ 	    
+ 	    // Busca a conta de destino pelo idConta
+ 	    Conta conta = contaRepository.findByIdConta(idConta);
+ 	    
+ 	    // Verifica se a conta foi encontrada
+ 	    if (conta != null) {
+ 	        // Criação da instância Transação
+ 	        Transacao transacao = new Transacao();
+ 	        int tipoOperacao = 2;  // 2 - CRÉDITO (DEPÓSITO)
+ 	        LocalDateTime dataTransacao = LocalDateTime.now();
+ 	        
+ 	        // Atribui os dados da transação
+ 	        transacao.setTipoTransacao(tipoTransacao);
+ 	        transacao.setValorTransacao(valor);
+ 	        transacao.setDataTransacao(dataTransacao);  
+ 	        transacao.setDescricaoTransacao(descricaoTransacao);
+ 	        transacao.setConta(conta);
+ 	        transacao.setTipoOperacao(tipoOperacao);
+ 	        
+ 	        // Credita o valor na conta
+ 	        conta.setSaldoConta(conta.getSaldoConta().add(valor));  
+ 	        contaRepository.save(conta);  // Atualiza o saldo da conta no banco de dados
+ 	        
+ 	        // Salva a transação no banco de dados
+ 	        transacaoRepository.save(transacao);
+ 	        
+ 	        return transacao;
+ 	    }
+ 	    return null;  // Caso a conta não exista
+ 	}
  
 
 }

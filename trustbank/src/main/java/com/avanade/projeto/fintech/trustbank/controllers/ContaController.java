@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avanade.projeto.fintech.trustbank.dto.ExtratoDTO;
+import com.avanade.projeto.fintech.trustbank.dto.TransacaoDTO;
 import com.avanade.projeto.fintech.trustbank.dto.UsuarioContaDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Conta;
 import com.avanade.projeto.fintech.trustbank.entities.Transacao;
@@ -91,13 +92,34 @@ public class ContaController {
 		
 		// 6) Realização da transação
 		
-	    @PostMapping("/realizarTransacao")
-	    public Transacao realizarTransacaoDebitar(@RequestParam int idConta, 
-	    		@RequestParam BigDecimal valor, 
-	    		@RequestParam int tipoTransacao, 
-	    		@RequestParam String descricaoTransacao ) {
-	        return transacaoService.realizarTransacaoDebitar(idConta, valor, tipoTransacao, descricaoTransacao);
-	    }
+//	    @PostMapping("/realizarTransacao")
+//	    public Transacao realizarTransacaoDebitar(@RequestParam int idConta, 
+//	    		@RequestParam BigDecimal valor, 
+//	    		@RequestParam int tipoTransacao, 
+//	    		@RequestParam String descricaoTransacao ) {
+//	        return transacaoService.realizarTransacaoDebitar(idConta, valor, tipoTransacao, descricaoTransacao);
+//	    }
+		
+		// Adicionado para a transação do tipo saque 
+		@PostMapping("/realizarTransacao")
+		public Transacao realizarTransacaoDebitar(@RequestBody TransacaoDTO transacaoDTO) {
+		    return transacaoService.realizarTransacaoDebitar(
+		            transacaoDTO.getIdConta(), 
+		            transacaoDTO.getValor(), 
+		            transacaoDTO.getTipoTransacao(), 
+		            transacaoDTO.getDescricaoTransacao());
+		}
+		
+		// Adicionado para a transação do tipo depósito
+		@PostMapping("/depositar")
+		public Transacao realizarTransacaoCreditar(@RequestBody TransacaoDTO transacaoDTO) {
+		    return transacaoService.realizarTransacaoCreditar(
+		            transacaoDTO.getIdConta(), 
+		            transacaoDTO.getValor(), 
+		            transacaoDTO.getTipoTransacao(), 
+		            transacaoDTO.getDescricaoTransacao());
+		}
+
 	
 	    // 7) Transferência para outra conta existente no sistema
 	    
@@ -111,16 +133,16 @@ public class ContaController {
 	    
 	    }
 	    
-	    // 8) Fazer saque
-	    @PostMapping("/saque")
-	    public Transacao fazerSaque(@RequestParam int idConta, 
-	    		@RequestParam BigDecimal valor, 
-	    		@RequestParam int tipoTransacao, 
-	    		@RequestParam String descricaoTransacao) {
-	    	
-	    	return transacaoService.realizarTransacaoDebitar(idConta, valor, tipoTransacao, descricaoTransacao);
-	    	
-	    }
+//	    // 8) Fazer saque
+//	    @PostMapping("/saque")
+//	    public Transacao fazerSaque(@RequestParam int idConta, 
+//	    		@RequestParam BigDecimal valor, 
+//	    		@RequestParam int tipoTransacao, 
+//	    		@RequestParam String descricaoTransacao) {
+//	    	
+//	    	return transacaoService.realizarTransacaoDebitar(idConta, valor, tipoTransacao, descricaoTransacao);
+//	    	
+//	    }
 	    
 }
 
