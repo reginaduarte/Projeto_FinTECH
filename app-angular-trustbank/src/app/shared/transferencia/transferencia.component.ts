@@ -1,37 +1,45 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { TransferenciaService } from '../../services/transferencia.service';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-transferencia',
   templateUrl: './transferencia.component.html',
   styleUrls: ['./transferencia.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports:[CommonModule, FormsModule]
 })
 export class TransferenciaComponent {
-  conta: string = '';
-  agencia: string = '';
-  tipoTransferencia: string = ''; 
-  valor: number = 0;
-  senha: string = '';
-  mensagem: string = '';
+  conta!: number; // Número da conta destino
+  agencia!: number; // Número da agência destino
+  valor!: number; // Valor a ser transferido
+  senha!: string; // Senha para autenticação
+  tipoTransferencia: string = 'ted'; // Tipo de transferência fixado como TED
+  mensagem: string | null = null; // Mensagem de sucesso ou erro
 
-  // Método para simular a transferência
-  onSubmit() {
-    if (this.conta && this.agencia && this.valor > 0 && this.senha) {
-      this.mensagem = `Transferência de R$ ${this.valor.toFixed(2)} (${this.tipoTransferencia.toUpperCase()}) realizada com sucesso para a conta ${this.conta}, agência ${this.agencia}!`;
-      this.resetForm();
-    } else {
-      this.mensagem = 'Por favor, preencha todos os campos corretamente.';
-    }
-  }
+  constructor(private transferenciaService: TransferenciaService) {}
 
-  // Método para limpar o formulário
-  resetForm() {
-    this.conta = '';
-    this.agencia = '';
-    this.tipoTransferencia = 'doc';
-    this.valor = 0;
-    this.senha = '';
+  onSubmit(): void {
+    // Objeto para a transferência baseado nos campos do formulário
+    const transferencia = {
+      idConta: 1, // ID fixo da conta de origem
+      numeroAgenciaDestino: this.agencia, // Agência da conta destino
+      numeroContaDestino: this.conta, // Conta destino
+      valor: this.valor, // Valor a ser transferido
+      tipoTransacao: 0,  
+      descricaoTransacao: 'Transferência', // Descrição fixa
+      temTarifa: this.tipoTransferencia === 'ted' ? 1 : 0, // Define a tarifa com base no tipo de transferência
+    };
+
+    // Chamada ao serviço para realizar a transferência
+    this.transferenciaService.transferir(transferencia).subscribe({
+      next: () => {
+        this.mensagem = 'Transferência realizada com sucesso!';
+      },
+      error: (error) => {
+        this.mensagem = 'Erro ao realizar a transferência. Verifique os dados e tente novamente.';
+        console.error(error);
+      },
+    });
   }
 }

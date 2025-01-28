@@ -20,5 +20,4 @@ export class TransacaoService {
   depositar(deposito: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(`${this.apiUrl}/depositar`, deposito, { headers });
-  }
-}
+  }}

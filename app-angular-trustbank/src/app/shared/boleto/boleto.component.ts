@@ -1,36 +1,35 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { BoletoService } from '../../services/boleto.service';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-boleto',
   templateUrl: './boleto.component.html',
   styleUrls: ['./boleto.component.css'],
-  imports: [FormsModule, CommonModule]
+  imports: [CommonModule, FormsModule]
 })
 export class BoletoComponent {
-  // Variáveis que armazenam os dados do formulário
   codigoBarras: string = '';
   vencimento: string = '';
   valor: number = 0;
   senha: string = '';
-  
-  mensagem: string | null = null;
+  mensagem: string = '';
 
-  // Método chamado quando o formulário é submetido
-  onSubmit() {
-    if (this.codigoBarras && this.vencimento && this.valor && this.senha) {
-      // Mensagem de sucesso
-      this.mensagem = 'Boleto processado com sucesso!';
+  constructor(private boletoService: BoletoService) {}
+
+  onSubmit(): void {
+    if (this.codigoBarras && this.valor && this.senha) {
+      this.boletoService.pagarBoleto(this.codigoBarras, this.valor, this.senha).subscribe(
+        (response) => {
+          this.mensagem = 'Pagamento realizado com sucesso!';
+        },
+        (error) => {
+          this.mensagem = 'Erro ao pagar boleto: ' + error.message;
+        }
+      );
     } else {
-      // Mensagem de erro
       this.mensagem = 'Por favor, preencha todos os campos.';
     }
-
-    // Limpa os campos após a submissão
-    this.codigoBarras = '';
-    this.vencimento = '';
-    this.valor = 0;
-    this.senha = '';
   }
 }
