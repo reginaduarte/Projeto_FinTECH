@@ -25,6 +25,9 @@ public class TransacaoServices {
 	@Autowired
 	private ContaRepository contaRepository;
 	
+	@Autowired
+	private TarifaServices tarifaServices;
+	
 	
 	// 1) Listar as transações
 	
@@ -42,11 +45,16 @@ public class TransacaoServices {
 	// 7) Método para realizar uma transação
     
     public Transacao realizarTransacaoDebitar(int idConta, BigDecimal valor, 
-    		int tipoTransacao, String descricaoTransacao) {
+    		int tipoTransacao, String descricaoTransacao, int temTarifa) {
     	
     	
     	 Conta conta = contaRepository.findByIdConta(idConta);
 
+    	 // Atualizar o valor pretendido + valor da tarifa
+    	 
+    	 if(temTarifa != 0) {
+    		 valor = tarifaServices.calcularTarifa(temTarifa, valor);
+    	 }
     	 
     	// Executar o método 6 para ver se tem saldo suficiente
     	
@@ -93,7 +101,7 @@ public class TransacaoServices {
  // 7) Fazer transferência para outra conta
 
  	public Transacao transferirParaOutraConta(int idConta, int numeroAgenciaDestino, 
- 			int numeroContaDestino, BigDecimal valor, String descricaoTransacao) {
+ 			int numeroContaDestino, BigDecimal valor, String descricaoTransacao, int temTarifa) {
 
  		Transacao transferencia = new Transacao();
 
@@ -117,7 +125,7 @@ public class TransacaoServices {
 
  		// Fazer a transação
  		transferencia = realizarTransacaoDebitar(
- 				contaOrigem.getIdConta(), valor, tipoTransacao, descricaoTransacao);
+ 				contaOrigem.getIdConta(), valor, tipoTransacao, descricaoTransacao, temTarifa);
 
  		// Creditar na Conta Destino
  		contaService.creditarContaDestino(contaDestino, transferencia);
@@ -125,6 +133,51 @@ public class TransacaoServices {
  		return transferencia;
  		
  	}
+    
+    
+//    public Transacao transferirParaOutraConta(int idConta, int numeroAgenciaDestino, 
+//            int numeroContaDestino, BigDecimal valor, String descricaoTransacao, int temTarifa) {
+//
+//        // Busca a conta origem
+//        Conta contaOrigem = contaRepository.findByIdConta(idConta);
+//        if (contaOrigem == null) {
+//            return null;  // Conta origem não encontrada
+//        }
+//
+//        // Busca a conta destino
+//        Conta contaDestino = contaRepository.findByNumAgenciaAndNumeroConta(numeroAgenciaDestino, numeroContaDestino);
+//        if (contaDestino == null) {
+//            return null;  // Conta destino não encontrada
+//        }
+//
+//        // Calcula o valor total com tarifa (apenas para a transação de débito na conta origem)
+//        BigDecimal valorComTarifa = valor;
+//        if (temTarifa != 0) {
+//            valorComTarifa = tarifaServices.calcularTarifa(temTarifa, valor);
+//        }
+//
+//        // Executa a transação de débito na conta origem
+//        Transacao transferencia = realizarTransacaoDebitar(
+//                contaOrigem.getIdConta(), valorComTarifa, 0, descricaoTransacao, temTarifa);
+//
+//        if (transferencia != null) {
+//            // Credita na conta destino apenas o valor original (sem a tarifa)
+//            creditarContaDestino(contaDestino, valor);
+//            return transferencia;
+//        }
+//
+//        return null;  
+//    }
+
+    public void creditarContaDestino(Conta contaDestino, BigDecimal valorCredito) {
+        BigDecimal saldoAtual = contaDestino.getSaldoConta();
+        BigDecimal novoSaldo = saldoAtual.add(valorCredito);
+        contaDestino.setSaldoConta(novoSaldo);
+
+        // Salva a conta destino com o novo saldo
+        contaRepository.save(contaDestino);
+    }
+
     
  	
  // Método para realizar uma transação de crédito (depósito)
@@ -160,6 +213,6 @@ public class TransacaoServices {
  	    }
  	    return null;  // Caso a conta não exista
  	}
- 
+ 	
 
 }

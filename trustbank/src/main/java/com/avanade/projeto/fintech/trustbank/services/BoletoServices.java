@@ -1,6 +1,8 @@
 package com.avanade.projeto.fintech.trustbank.services;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ public class BoletoServices {
 
 	@Autowired
 	private ContaRepository contaRepository;
+	
 
 	public List<Boleto> listarBoletos() {
 		return boletoRepository.findAll();
@@ -41,6 +44,11 @@ public class BoletoServices {
 
 		// Verifica se o boleto existe
 		Boleto boleto = boletoRepository.findByCodigoBoleto(codigoBoleto);
+		
+	    // Verifica se o boleto ou o valor do boleto são nulos
+	    if (boleto == null || boleto.getValorBoleto() == null) {
+	        throw new IllegalArgumentException("O boleto ou o valor do boleto não pode ser nulo");
+	    }
 
 //		if (boleto == null) {
 //			return "Não foi possível processar! Boleto não existente no sistema.";
@@ -56,7 +64,8 @@ public class BoletoServices {
 				conta.getIdConta(), 
 				boleto.getValorBoleto(),
 				tipoTransacao, 
-				descricaoTransacao);
+				descricaoTransacao,
+				0);
 
 		// ALTERAR STATUS DO BOLETO:
 		atualizarStatusBoleto(boleto, transacaoBoleto);
@@ -89,6 +98,28 @@ public class BoletoServices {
 
 		
 	}
+	
+	// Método para buscar a data de vencimento do boleto pelo código
+	public LocalDateTime consultarVencimentoPorCodigoBoleto(String codigoBoleto) {
+	    // Buscar o boleto pelo código
+	    Boleto boleto = boletoRepository.findByCodigoBoleto(codigoBoleto);
+
+	    // Verificar se o boleto existe
+	    if (boleto == null) {
+	        throw new IllegalArgumentException("Boleto não encontrado!");
+	    }
+
+	    // Verificar se o campo dataVencimento é null
+	    if (boleto.getDataVencimento() == null) {
+	        throw new IllegalArgumentException("Data de vencimento do boleto não encontrada!");
+	    }
+
+	    // Converter Date para LocalDateTime
+	    return boleto.getDataVencimento().toInstant()
+	                 .atZone(ZoneId.systemDefault())
+	                 .toLocalDateTime();
+	}
+
 
 }
 

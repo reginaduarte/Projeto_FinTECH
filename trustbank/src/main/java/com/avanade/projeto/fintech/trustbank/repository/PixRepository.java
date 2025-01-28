@@ -6,4 +6,5 @@ import com.avanade.projeto.fintech.trustbank.entities.Pix;
 
 public interface PixRepository extends JpaRepository <Pix, Integer> {
 
+	Pix findByChavePix(String chavePix);
 }

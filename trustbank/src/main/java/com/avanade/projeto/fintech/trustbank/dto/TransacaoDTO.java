@@ -7,6 +7,7 @@ public class TransacaoDTO {
     private BigDecimal valor;
     private int tipoTransacao;
     private String descricaoTransacao;
+    private int temTarifa;
 
     // Getters e Setters
     public int getIdConta() {
@@ -40,4 +41,13 @@ public class TransacaoDTO {
     public void setDescricaoTransacao(String descricaoTransacao) {
         this.descricaoTransacao = descricaoTransacao;
     }
+
+	public int getTemTarifa() {
+		return temTarifa;
+	}
+
+	public void setTemTarifa(int temTarifa) {
+		this.temTarifa = temTarifa;
+	}
+    
 }

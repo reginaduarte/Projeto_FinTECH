@@ -84,7 +84,7 @@ public class ContaServices {
 		int codOperacao = transferencia.getCodOperacao();
 		
 		// Adicionando valor na conta destino
-		contaDestino.setSaldoConta(valorCredito);
+		contaDestino.setSaldoConta(contaDestino.getSaldoConta().add(valorCredito));
 		
 		// Registrando transação para que apareça no Extrato da Conta Destiono
 		Transacao registroTransfDestino = new Transacao();

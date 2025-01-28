@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -42,6 +43,10 @@ public class Pix {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_TRANSACAO")
 	private Transacao transacao;
+
+	@ManyToOne(fetch = FetchType.LAZY)  
+    @JoinColumn(name = "CONTA_ORIGEM")
+    private Conta contaOrigem;
 	
 	
 	
@@ -68,6 +73,16 @@ public class Pix {
 	}
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+	public Transacao getTransacao() {
+		return null;
+	}
+	public void setTransacao(Transacao transacao) {
+		this.transacao = transacao;
+	}
+	public void setContaOrigem(Conta contaOrigem) {
+		this.contaOrigem = contaOrigem;
+		
 	}
 
 }

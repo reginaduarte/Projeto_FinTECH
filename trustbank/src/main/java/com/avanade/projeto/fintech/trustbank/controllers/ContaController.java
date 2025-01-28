@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.avanade.projeto.fintech.trustbank.dto.ExtratoDTO;
 import com.avanade.projeto.fintech.trustbank.dto.TransacaoDTO;
+import com.avanade.projeto.fintech.trustbank.dto.TransferenciaDTO;
 import com.avanade.projeto.fintech.trustbank.dto.UsuarioContaDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Conta;
 import com.avanade.projeto.fintech.trustbank.entities.Transacao;
@@ -107,7 +108,8 @@ public class ContaController {
 		            transacaoDTO.getIdConta(), 
 		            transacaoDTO.getValor(), 
 		            transacaoDTO.getTipoTransacao(), 
-		            transacaoDTO.getDescricaoTransacao());
+		            transacaoDTO.getDescricaoTransacao(),
+		    		transacaoDTO.getTemTarifa());
 		}
 		
 		// Adicionado para a transação do tipo depósito
@@ -123,15 +125,27 @@ public class ContaController {
 	
 	    // 7) Transferência para outra conta existente no sistema
 	    
-	    @PostMapping("/transferir")
-	    public Transacao transferirParaOutraConta(@RequestParam int idConta, @RequestParam int numeroAgenciaDestino, 
-	    @RequestParam int numeroContaDestino, @RequestParam BigDecimal valor, 
-	    @RequestParam String descricaoTransacao) {
-	    	
-	    	return transacaoService.transferirParaOutraConta(idConta, numeroAgenciaDestino, 
-	    			numeroContaDestino, valor, descricaoTransacao);
-	    
-	    }
+//	    @PostMapping("/transferir")
+//	    public Transacao transferirParaOutraConta(@RequestParam int idConta, @RequestParam int numeroAgenciaDestino, 
+//	    @RequestParam int numeroContaDestino, @RequestParam BigDecimal valor, 
+//	    @RequestParam String descricaoTransacao, @RequestParam int temTarifa) {
+//	    	
+//	    	return transacaoService.transferirParaOutraConta(idConta, numeroAgenciaDestino, 
+//	    			numeroContaDestino, valor, descricaoTransacao, temTarifa);
+//	    
+//	    }
+		@PostMapping("/transferir")
+		public Transacao transferirParaOutraConta(@RequestBody TransferenciaDTO transferenciaDTO) {
+		    return transacaoService.transferirParaOutraConta(
+		        transferenciaDTO.getIdConta(),
+		        transferenciaDTO.getNumeroAgenciaDestino(),
+		        transferenciaDTO.getNumeroContaDestino(),
+		        transferenciaDTO.getValor(),
+		        transferenciaDTO.getDescricaoTransacao(),
+		        transferenciaDTO.getTemTarifa()
+		    );
+		}
+
 	    
 //	    // 8) Fazer saque
 //	    @PostMapping("/saque")

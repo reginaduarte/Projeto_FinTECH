@@ -92,12 +92,12 @@ public class Conta {
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
-//	public Usuario getUsuario() {
-//		return usuario;
-//	}
-//	public void setUsuario(Usuario usuario) {
-//		this.usuario = usuario;
-//	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 }

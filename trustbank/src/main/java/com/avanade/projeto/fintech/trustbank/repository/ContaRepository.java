@@ -43,6 +43,7 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 			+ "	c.AGENCIA, \r\n"
 			+ "	t.ID_TRANSACAO, \r\n" 
 			+ "		CASE t.TIPO_TRANSACAO \r\n" 
+			+ "         WHEN 0 THEN 'TRANSFERÊNCIA' \r\n"
 			+ "			WHEN 1 THEN 'SAQUE' \r\n"
 			+ "			WHEN 2 THEN 'DEPÓSITO' \r\n" 
 			+ "			WHEN 3 THEN 'PIX' \r\n"

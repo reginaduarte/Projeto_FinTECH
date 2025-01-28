@@ -6,4 +6,7 @@ import com.avanade.projeto.fintech.trustbank.entities.Tarifa;
 
 public interface TarifaRepository extends JpaRepository <Tarifa, Integer> {
 
+	// 1) Encontrar tarifa pelo Id_Tarifa
+	
+	Tarifa findByIdTarifa(int idTarifa);
 }
