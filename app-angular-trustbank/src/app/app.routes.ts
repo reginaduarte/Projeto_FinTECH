@@ -13,6 +13,8 @@ import { ConfiguracaoComponent } from './shared/configuracao/configuracao.compon
 import { LogoutComponent } from './shared/logout/logout.component';
 import { AdmComponent } from './pages/adm/adm.component';
 import { FormComponent } from './shared/form/form.component';
+import { AdmlogoutComponent } from './shared/admlogout/admlogout.component';
+import { MenuadmComponent } from './shared/menuadm/menuadm.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,5 +36,15 @@ export const routes: Routes = [
       { path: 'logout', component: LogoutComponent },
       { path: '', redirectTo: 'start', pathMatch: 'full' } 
     ]
-  }
+  },
+  { path: 'adm', component: AdmComponent,
+    children: [
+      // { path: 'admstart', component: AdmstartComponent},
+      // { path: 'admcadastro', component: AdmcadastroComponent },
+      // { path: 'visualizar', component: VisualizarComponent },
+      // { path: 'admlogs', component: AdmlogsComponent },
+      { path: 'admlogout', component: AdmlogoutComponent },
+      { path: '', redirectTo: 'admstart', pathMatch: 'full' }
+    ]
+   },
 ];

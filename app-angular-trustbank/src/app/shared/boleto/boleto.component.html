@@ -5,23 +5,52 @@
 
       <div class="form-group">
         <label for="codigo-barras"><i class="fas fa-barcode"></i>Código de Barras:</label>
-        <input type="text" id="codigo-barras" [(ngModel)]="codigoBarras" name="codigo-barras" placeholder="Digite o código de barras" required />
+        <input type="text" id="codigo-barras" [(ngModel)]="codigoBarras" name="codigo-barras" placeholder="Digite o código de barras"required (input)="buscarInformacoesBoleto()" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="vencimento"><i class="fas fa-calendar"></i>Data de Vencimento:</label>
+          <input
+            type="date"
+            id="vencimento"
+            [(ngModel)]="vencimento"
+            name="vencimento"
+            [value]="vencimento"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
+          <input
+            type="number"
+            id="valor"
+            [(ngModel)]="valor"
+            name="valor"
+            placeholder="Digite o valor"
+            required
+          />
+        </div>
       </div>
 
       <div class="form-row">
       <div class="form-group">
-        <label for="vencimento"><i class="fas fa-calendar"></i>Data de Vencimento:</label>
-        <input type="date" id="vencimento" [(ngModel)]="vencimento" name="vencimento" required />
-      </div>
-      <div class="form-group">
-        <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
-        <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
-      </div>
+        <label for="descricao"><i class="fas fa-key"></i>Descrição:</label>
+        <input type="text" id="descricao" [(ngModel)]="descricao" name="descricao" placeholder="Digite uma descrição" required />
       </div>
 
       <div class="form-group">
         <label for="senha"><i class="fas fa-key"></i>Senha:</label>
-        <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
+        <input
+          type="password"
+          id="senha"
+          [(ngModel)]="senha"
+          name="senha"
+          placeholder="Digite a sua senha"
+          required
+        />
+      </div>
       </div>
 
       <button type="submit" class="btn-submit">Pagar Boleto</button>

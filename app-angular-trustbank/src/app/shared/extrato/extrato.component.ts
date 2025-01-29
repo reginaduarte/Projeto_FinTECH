@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ExtratoService } from '../../services/extrato.service';
+import { AuthService } from '../../services/auth.service'; 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -7,15 +8,25 @@ import { CommonModule } from '@angular/common';
   selector: 'app-extrato',
   templateUrl: './extrato.component.html',
   styleUrls: ['./extrato.component.css'],
-  imports:[FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule],
 })
-export class ExtratoComponent {
+export class ExtratoComponent implements OnInit {
   dataInicio: string = '';
   dataFim: string = '';
-  transacoes: any[] = []; // Dados das transações
-  idConta: number = 1; // ID fixo Mudar
+  transacoes: any[] = []; 
+  idConta: number = 0; 
+  tipoOperacao: string = '';
 
-  constructor(private extratoService: ExtratoService) {}
+  constructor(
+    private extratoService: ExtratoService,
+    private authService: AuthService 
+  ) {}
+
+  ngOnInit(): void {
+    // Obtendo o ID da conta automaticamente do AuthService
+    this.idConta = this.authService.getIdConta();
+    console.log('ID da Conta:', this.idConta);
+  }
 
   filtrarExtrato(): void {
     console.log('Data Início:', this.dataInicio);
@@ -27,6 +38,7 @@ export class ExtratoComponent {
       alert('Por favor, preencha as datas de início e fim.');
       return;
     }
+    const dataFimUm = this.addOneDayToDate(this.dataFim);
   
     // Chamando o serviço para buscar as transações
     this.extratoService.getExtrato(this.idConta).subscribe({
@@ -35,17 +47,15 @@ export class ExtratoComponent {
         this.transacoes = data.filter((transacao) => {
           const dataTransacao = this.parseDataTransacao(transacao.dataTransacao);
           const inicio = new Date(this.dataInicio);
-          const fim = new Date(this.dataFim);
+          const fim = new Date(dataFimUm); 
   
-          // Ignorar hora e minutos na comparação de data
-          dataTransacao.setHours(0, 0, 0, 0); 
+          // Normalizando as datas (removendo o fuso horário da comparação)
           inicio.setHours(0, 0, 0, 0);
-          fim.setHours(23, 59, 59, 999); 
-  
+          fim.setHours(23, 59, 59, 999);
+          dataTransacao.setHours(0, 0, 0, 0);  
           console.log('dataTransacao:', dataTransacao);
           console.log('inicio:', inicio);
           console.log('fim:', fim);
-  
           // Comparar as datas, ignorando horário
           return dataTransacao >= inicio && dataTransacao <= fim;
         });
@@ -58,21 +68,30 @@ export class ExtratoComponent {
     });
   }
   
-  // Função para converter a data da transação para um objeto Date
-  private parseDataTransacao(data: string): Date {
-    const partes = data.split(' '); // Dividir a data e hora
-    const dataPartes = partes[0].split('/'); // Dividir a data no formato dd/MM/yyyy
-    const horaPartes = partes[1].split(':'); // Dividir a hora no formato HH:mm:ss
-  
-    const ano = parseInt(dataPartes[2]);
-    const mes = parseInt(dataPartes[1]) - 1; // Meses começam de 0 (janeiro = 0)
-    const dia = parseInt(dataPartes[0]);
-    const hora = parseInt(horaPartes[0]);
-    const minuto = parseInt(horaPartes[1]);
-    const segundo = parseInt(horaPartes[2]);
-  
-    // Retornar a data em formato Date
-    return new Date(ano, mes, dia, hora, minuto, segundo);
+  private addOneDayToDate(date: string): string {
+    const partes = date.split('-');
+    const data = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]));
+    data.setDate(data.getDate() + 1); // Adiciona 1 dia
+    const novaData = data.toISOString().split('T')[0];
+    return novaData;
   }
   
+
+  // Função para converter a data da transação em string para Date
+  private parseDataTransacao(data: string): Date {
+    // Divide a data e hora
+    const partes = data.split(' ');
+    const dataPartes = partes[0].split('/');
+    const horaPartes = partes[1].split(':');
+    // Extraindo as partes da data e hora
+    const dia = parseInt(dataPartes[0]);
+    const mes = parseInt(dataPartes[1]) - 1;  
+    const ano = parseInt(dataPartes[2]);
+    const hora = parseInt(horaPartes[0]);
+    const minuto = parseInt(horaPartes[1]);
+    const segundo = horaPartes[2] ? parseInt(horaPartes[2]) : 0; 
+  
+    // Criando a data com os dados extraídos
+    return new Date(ano, mes, dia, hora, minuto, segundo);
+  }
 }

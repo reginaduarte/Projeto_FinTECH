@@ -41,10 +41,10 @@ export class SaqueComponent implements OnInit {
     }
 
     const saqueData = {
-      idConta: this.idConta, // ID da conta
-      valor: this.valor, // Ajustado para "valor"
-      tipoTransacao: 1, // Tipo de transação, 1 = Saque
-      descricaoTransacao: this.descricao, // Descrição da transação
+      idConta: this.idConta, 
+      valor: this.valor, 
+      tipoTransacao: 1, 
+      descricaoTransacao: this.descricao, 
     };
 
     this.transacaoService.realizarSaque(saqueData).subscribe(

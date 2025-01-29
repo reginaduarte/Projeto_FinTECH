@@ -28,12 +28,11 @@ export class DepositoComponent implements OnInit {
 
   // Método para realizar o depósito
   onSubmit() {
-    // Montando o objeto para enviar à API
     const depositoData = {
-      idConta: this.authService.getIdConta(),  // Pega o idConta do localStorage
-      valor: this.valor,                       // Valor do depósito
-      tipoTransacao: 2,                        // Tipo de transação (2 - Depósito)
-      descricaoTransacao: this.descricao      // Descrição da transação
+      idConta: this.authService.getIdConta(),  
+      valor: this.valor,                       
+      tipoTransacao: 2,                        
+      descricaoTransacao: this.descricao      
     };
 
     // Chamando o serviço de transação para realizar o depósito

@@ -13,6 +13,7 @@ export class PixComponent {
   chavePix: string = '';
   data: string = '';
   valor: number = 0;
+  descricao: string = ''; 
   senha: string = '';
   mensagem: string | null = null;
 
@@ -31,6 +32,7 @@ export class PixComponent {
     this.chavePix = '';
     this.data = '';
     this.valor = 0;
+    this.descricao = '';
     this.senha = '';
   }
 }

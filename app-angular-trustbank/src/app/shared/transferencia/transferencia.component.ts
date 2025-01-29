@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TransferenciaService } from '../../services/transferencia.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,28 +7,42 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-transferencia',
   templateUrl: './transferencia.component.html',
   styleUrls: ['./transferencia.component.css'],
-  imports:[CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule]
 })
-export class TransferenciaComponent {
-  conta!: number; // Número da conta destino
-  agencia!: number; // Número da agência destino
-  valor!: number; // Valor a ser transferido
-  senha!: string; // Senha para autenticação
-  tipoTransferencia: string = 'ted'; // Tipo de transferência fixado como TED
-  mensagem: string | null = null; // Mensagem de sucesso ou erro
+export class TransferenciaComponent implements OnInit {
+  conta!: number; 
+  agencia!: number; 
+  valor!: number; 
+  senha!: string; 
+  tipoTransferencia: string = 'ted'; 
+  mensagem: string | null = null; 
+  idConta!: number;  
 
   constructor(private transferenciaService: TransferenciaService) {}
 
+  ngOnInit(): void {
+    const idConta = localStorage.getItem('idConta');
+    if (idConta) {
+      this.idConta = Number(idConta);  
+    } else {
+      console.error('ID da conta não encontrado no localStorage');
+    }
+  }
+
   onSubmit(): void {
-    // Objeto para a transferência baseado nos campos do formulário
+    if (!this.idConta) {
+      this.mensagem = 'Conta não encontrada!';
+      return;
+    }
+
     const transferencia = {
-      idConta: 1, // ID fixo da conta de origem
-      numeroAgenciaDestino: this.agencia, // Agência da conta destino
-      numeroContaDestino: this.conta, // Conta destino
-      valor: this.valor, // Valor a ser transferido
+      idConta: this.idConta,  
+      numeroAgenciaDestino: this.agencia, 
+      numeroContaDestino: this.conta, 
+      valor: this.valor, 
       tipoTransacao: 0,  
-      descricaoTransacao: 'Transferência', // Descrição fixa
-      temTarifa: this.tipoTransferencia === 'ted' ? 1 : 0, // Define a tarifa com base no tipo de transferência
+      descricaoTransacao: 'TED', 
+      temTarifa: this.tipoTransferencia === 'ted' ? 1 : 0, 
     };
 
     // Chamada ao serviço para realizar a transferência

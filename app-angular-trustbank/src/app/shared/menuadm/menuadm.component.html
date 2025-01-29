@@ -1,1 +1,11 @@
-<p>menuadm works!</p>
+<div class="sidebar">
+    <h2> Trust Bank </h2>
+    <a routerLink="/adm/admstart" routerLinkActive=""><i class="fas fa-home"></i> Home</a>
+    <a routerLink="/adm/admcadastro" routerLinkActive=""><i class="bi bi-person-add"></i> Novo Cliente</a>
+    <a routerLink="/adm/visualizar" routerLinkActive=""><i class="bi bi-person-lines-fill"></i>Meus Clientes</a>
+    <a routerLink="/adm/admlogs" routerLinkActive=""><i class="fas fa-cogs"></i> Logs de Acesso </a>
+    <a routerLink="/adm/admlogout" routerLinkActive=""><i class="fas fa-sign-out-alt"></i> Logout</a>
+</div>
+<div class="container-content">
+  <router-outlet></router-outlet>
+</div>

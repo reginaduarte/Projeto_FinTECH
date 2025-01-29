@@ -13,7 +13,7 @@ export class ConfiguracaoComponent implements OnInit {
   telefone: string = '';
   email: string = '';
   mensagem: string = '';
-  idConta: number | null = null; // Variável para armazenar o idConta
+  idConta: number | null = null; 
 
   constructor(private atualizacaoService: AtualizacaoService) {}
 
@@ -21,7 +21,7 @@ export class ConfiguracaoComponent implements OnInit {
     // Pegando o idConta do localStorage
     const idConta = localStorage.getItem('idConta');
     if (idConta) {
-      this.idConta = Number(idConta); // Armazenando o idConta
+      this.idConta = Number(idConta); 
     } else {
       console.error('ID da conta não encontrado');
     }
@@ -30,9 +30,8 @@ export class ConfiguracaoComponent implements OnInit {
   // Método para atualizar os dados do usuário
   onSubmit() {
     if (this.telefone && this.email && this.idConta !== null) {
-      // Ajustando os nomes dos campos do payload para o esperado pelo backend
       const dadosAtualizados = {
-        idUsuario: this.idConta, // Usando o idConta recuperado do localStorage
+        idUsuario: this.idConta, 
         telefoneUsuario: this.telefone,
         emailUsuario: this.email,
       };
