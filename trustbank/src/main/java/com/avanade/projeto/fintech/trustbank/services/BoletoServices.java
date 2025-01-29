@@ -119,6 +119,13 @@ public class BoletoServices {
 	                 .atZone(ZoneId.systemDefault())
 	                 .toLocalDateTime();
 	}
+	
+	
+	// Método para buscar boleto pelo código
+    public Boleto buscarBoletoPorCodigo(String codigoBoleto) {
+        // Aqui você precisa buscar o boleto no banco de dados com base no código do boleto
+        return boletoRepository.findByCodigoBoleto(codigoBoleto); // Substitua pelo método correto no seu repositório
+    }
 
 
 }

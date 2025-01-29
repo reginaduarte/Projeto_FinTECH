@@ -26,7 +26,7 @@ public class TarifaServices {
 	
 public BigDecimal calcularTarifa(int temTarifa, BigDecimal valor) {
 		
-		BigDecimal valor1 = new BigDecimal("4.00");
+		BigDecimal valor1 = new BigDecimal("8.00");
 		BigDecimal valor2 = new BigDecimal("3.00");
 
 		

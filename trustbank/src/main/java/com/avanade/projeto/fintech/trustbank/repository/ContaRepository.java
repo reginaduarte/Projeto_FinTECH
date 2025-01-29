@@ -51,7 +51,11 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 			+ "		END AS TIPO,\r\n" 
 			+ "	t.VALOR, \r\n"
 			+ "	t.DATA_TRANSACAO,\r\n" 
-			+ "	t.DESCRICAO,\r\n" 
+			+ "	t.DESCRICAO,\r\n"
+			+ "     CASE t.TIPO_OPERACAO \r\n"
+			+ "			WHEN 1 THEN 'DÉBITO' \r\n"
+			+ "			WHEN 2 THEN 'CRÉDITO' \r\n" 
+			+ "		END AS OPERACAO,\r\n" 
 			+ "	t.ID_CONTA \r\n"
 			+ "	FROM CONTA c INNER JOIN TRANSACAO t \r\n"
 			+ "	ON c.ID_CONTA = t.ID_CONTA WHERE c.ID_CONTA = :valorconta", nativeQuery = true)

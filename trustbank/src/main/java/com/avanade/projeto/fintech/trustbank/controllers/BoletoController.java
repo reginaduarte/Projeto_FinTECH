@@ -24,7 +24,7 @@ import com.avanade.projeto.fintech.trustbank.services.BoletoServices;
 public class BoletoController {
 
 	@Autowired
-	private BoletoServices boletoService;
+	private BoletoServices boletoServices;
 	
 	
 	
@@ -32,7 +32,7 @@ public class BoletoController {
 	public ResponseEntity<List<Boleto>> listarBoletos(){
 		
 		return new ResponseEntity<List<Boleto>>(
-				boletoService.listarBoletos(), 
+				boletoServices.listarBoletos(), 
 				HttpStatus.OK);
 	}
 	
@@ -41,7 +41,7 @@ public class BoletoController {
 		try {
 			
 			return new ResponseEntity<Boleto>
-			(boletoService.incluirBoleto(boleto), HttpStatus.CREATED);
+			(boletoServices.incluirBoleto(boleto), HttpStatus.CREATED);
 			
 		} catch (Exception e) {
 			
@@ -64,7 +64,7 @@ public class BoletoController {
 	@PostMapping("/processar")
 	public ResponseEntity<Transacao> processarBoleto(@RequestBody BoletoDTO boletoRequestDTO) {
 	    // Chamando o serviço para processar o boleto
-	    Transacao transacao = boletoService.processarBoleto(
+	    Transacao transacao = boletoServices.processarBoleto(
 	        boletoRequestDTO.getIdConta(), 
 	        boletoRequestDTO.getCodigoBoleto(), 
 	        boletoRequestDTO.getDescricaoTransacao()
@@ -78,12 +78,23 @@ public class BoletoController {
 		public ResponseEntity<?> consultarVencimento(@PathVariable("codigoBoleto") String codigoBoleto) {
 			try {
 				// Buscar a data de vencimento
-				LocalDateTime dataVencimento = boletoService.consultarVencimentoPorCodigoBoleto(codigoBoleto);
+				LocalDateTime dataVencimento = boletoServices.consultarVencimentoPorCodigoBoleto(codigoBoleto);
 				return ResponseEntity.ok(dataVencimento);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Boleto não encontrado!");
 			}
 		}
+		
+	    // Método listar informações de um boleto pelo código de barras
+	    @GetMapping("/lista/{codigoBoleto}")
+	    public Boleto getBoletoInfo(@PathVariable String codigoBoleto) {
+	        // Buscando o boleto com o código de barras
+	        Boleto boleto = boletoServices.buscarBoletoPorCodigo(codigoBoleto);
+	        if (boleto == null) {
+	            throw new RuntimeException("Boleto não encontrado para o código informado.");
+	        }
+	        return boleto;
+	    }
 	
 	
 }

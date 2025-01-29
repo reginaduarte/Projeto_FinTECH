@@ -20,9 +20,10 @@ public class ExtratoDTO {
 	
 	private String descricaoTransacao;
 	private int idContaDestino;
+	private String tipoOperacao;
 	
 	public ExtratoDTO(int idConta, int numeroConta, int numAgencia, int idTransacao, String tipoTransacao,
-			BigDecimal valorTransacao, Date dataTransacao, String descricaoTransacao, int idContaDestino) {
+			BigDecimal valorTransacao, Date dataTransacao, String descricaoTransacao, String tipoOperacao, int idContaDestino) {
 		super();
 		this.setIdConta(idConta); 
 		this.setNumeroConta(numeroConta);
@@ -32,6 +33,7 @@ public class ExtratoDTO {
 		this.setValorTransacao(valorTransacao);
 		this.setDataTransacao(dataTransacao);
 		this.setDescricaoTransacao(descricaoTransacao);
+		this.setTipoOperacao(tipoOperacao);
 		this.setIdContaDestino(idContaDestino); 
 	}
 	
@@ -88,6 +90,14 @@ public class ExtratoDTO {
 	}
 	public void setIdContaDestino(int idContaDestino) {
 		this.idContaDestino = idContaDestino;
+	}
+
+	public String getTipoOperacao() {
+		return tipoOperacao;
+	}
+
+	public void setTipoOperacao(String tipoOperacao) {
+		this.tipoOperacao = tipoOperacao;
 	}
 	
 }
