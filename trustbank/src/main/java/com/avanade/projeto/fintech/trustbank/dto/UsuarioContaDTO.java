@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class UsuarioContaDTO {
 
+	private int idUsuario;
 	private String nomeUsuario;
 	private String cpfUsuario;
 	private String telefoneUsuario;
@@ -16,9 +17,10 @@ public class UsuarioContaDTO {
 	private BigDecimal saldoConta;
 	private Date dataAbertura;
 	
-	public UsuarioContaDTO(String nomeUsuario, String cpfUsuario, String telefoneUsuario, String emailUsuario, int idConta, int numeroConta, int numAgencia,
+	public UsuarioContaDTO(int idUsuario, String nomeUsuario, String cpfUsuario, String telefoneUsuario, String emailUsuario, int idConta, int numeroConta, int numAgencia,
 			String tipoConta, BigDecimal saldoConta, Date dataAbertura) {
 		super();
+		this.setIdUsuario(idUsuario);
 		this.setNomeUsuario(nomeUsuario);	
 		this.setCpfUsuario(cpfUsuario);
 		this.setTelefoneUsuario(telefoneUsuario);
@@ -101,6 +103,12 @@ public class UsuarioContaDTO {
 	}
 	public void setEmailUsuario(String emailUsuario) {
 		this.emailUsuario = emailUsuario;
+	}
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 	
 	

@@ -15,12 +15,7 @@ import com.avanade.projeto.fintech.trustbank.repository.UsuarioRepository;
 public class UsuarioServices {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
-//	public List<Usuario> listarUsuarios(){
-//		return usuarioRepository.findAll(); 
-//	}
-//	
+	private UsuarioRepository usuarioRepository;	
 	
 	// 1) Consulta de usuários
 	public List<Usuario> listarUsuarios(){	
@@ -38,7 +33,26 @@ public class UsuarioServices {
 	public Usuario incluirUsuario(Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
+	
+	// Atualização dos dados do usuário pelo ADM
+	public Usuario atualizarUsuario(Usuario usuario) {
+    return usuarioRepository.save(usuario); 
+	}
+	public Usuario buscarPorCpf(String cpf) {
+	    return usuarioRepository.findByCpfUsuario(cpf);
+	}
+    public Usuario salvar(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
 
+	// Adicionado para exclusão do usuário
+	public void deletarUsuario(String cpf) {
+	    Usuario usuario = usuarioRepository.findByCpfUsuario(cpf);
+	    if (usuario == null) {
+	        throw new RuntimeException("Usuário não encontrado");
+	    }
+	    usuarioRepository.delete(usuario);
+	}
 	
 	// Adicionado o método para validar as credenciais de login
     public Usuario autenticarUsuario(LoginDTO loginRequest) {
@@ -55,19 +69,32 @@ public class UsuarioServices {
                 .orElseThrow(() -> new RuntimeException("Conta não encontrada!"));
     }
     
- // Método para atualizar os dados do usuário
+    public Usuario buscarPorId(int idUsuario) {
+        return usuarioRepository.findById(idUsuario).orElse(null);
+    }
+
+ // Método para atualizar os dados do usuário e o tipo da conta
     public Usuario atualizarDados(Usuario usuario) {
-        // Verifica se o usuário existe
+        // Verifica se o usuário existe no banco de dados
         Optional<Usuario> usuarioExistente = usuarioRepository.findById(usuario.getIdUsuario());
+
         if (usuarioExistente.isPresent()) {
             Usuario usuarioAtualizado = usuarioExistente.get();
-            usuarioAtualizado.setEmailUsuario(usuario.getEmailUsuario());  // Atualiza email
-            usuarioAtualizado.setTelefoneUsuario(usuario.getTelefoneUsuario());  // Atualiza telefone
-            return usuarioRepository.save(usuarioAtualizado);  // Salva a alteração
+            
+            // Atualiza os dados do usuário
+            usuarioAtualizado.setEmailUsuario(usuario.getEmailUsuario());
+            usuarioAtualizado.setTelefoneUsuario(usuario.getTelefoneUsuario());
+
+            // Atualiza o tipo da conta, se informado na requisição
+            if (usuario.getConta() != null && usuarioAtualizado.getConta() != null) {
+                usuarioAtualizado.getConta().setTipoConta(usuario.getConta().getTipoConta());
+            }
+
+            // Salva as alterações no banco de dados
+            return usuarioRepository.save(usuarioAtualizado);
         } else {
             throw new RuntimeException("Usuário não encontrado");
         }
     }
-
 
 }

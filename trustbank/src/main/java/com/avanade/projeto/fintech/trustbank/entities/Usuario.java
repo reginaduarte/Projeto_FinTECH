@@ -50,14 +50,13 @@ public class Usuario {
 
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)  
 	private Conta conta;
-	 
+	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}

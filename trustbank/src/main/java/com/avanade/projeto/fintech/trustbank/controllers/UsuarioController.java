@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +53,17 @@ public class UsuarioController {
 		}
 	}
 	
+	// Adicionado o método para excluir o cliente
+	@DeleteMapping("/deletar/{cpf}")
+	public ResponseEntity<?> deletarUsuario(@PathVariable("cpf") String cpf) {
+	    try {
+	        usuarioService.deletarUsuario(cpf);
+	        return ResponseEntity.ok("Usuário deletado com sucesso!");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado!");
+	    }
+	}
+	
 	// Adicionado o método para autenticação do login
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginRequest) {
@@ -60,6 +72,7 @@ public class UsuarioController {
         if (usuario != null) {
             // Construir o DTO para retornar as informações
             UsuarioContaDTO usuarioContaDTO = new UsuarioContaDTO(
+            	usuario.getIdUsuario(),
                 usuario.getNomeUsuario(),
                 usuario.getCpfUsuario(),
                 usuario.getTelefoneUsuario(),
@@ -89,7 +102,35 @@ public class UsuarioController {
 	    }
 	}
 	
-	// Adicionado o método para atualização de dados
+	@PutMapping("/atualizar/{idUsuario}")
+	public ResponseEntity<?> atualizarUsuario(@PathVariable int idUsuario, @RequestBody Usuario usuario) {
+	    try {
+	        Usuario usuarioExistente = usuarioService.buscarPorId(idUsuario);
+	        if (usuarioExistente == null) {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+	        }
+	        
+	        // Atualizar os dados do usuário
+	        usuarioExistente.setNomeUsuario(usuario.getNomeUsuario());
+	        usuarioExistente.setCpfUsuario(usuario.getCpfUsuario());
+	        usuarioExistente.setEmailUsuario(usuario.getEmailUsuario());
+	        usuarioExistente.setTelefoneUsuario(usuario.getTelefoneUsuario());
+
+	        if (usuarioExistente.getConta() != null) {
+	            usuarioExistente.getConta().setUsuario(usuarioExistente);
+	        }
+
+	        Usuario usuarioAtualizado = usuarioService.salvar(usuarioExistente);
+
+	        return new ResponseEntity<>(usuarioAtualizado, HttpStatus.OK);
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao atualizar usuário");
+	    }
+	}
+
+
+	
+	 //Adicionado o método para atualização de dados
 	@PutMapping("/atualizar")
 	public ResponseEntity<?> atualizarDados(@RequestBody Usuario usuario) {
 		try {

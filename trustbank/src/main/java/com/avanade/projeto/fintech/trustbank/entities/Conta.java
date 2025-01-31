@@ -39,13 +39,16 @@ public class Conta {
 	@Column(name = "TIPO_CONTA") // -- 1: SIMPLES, 2: PREMIUM
 	private int tipoConta;
 	
-	@Column(name = "SALDO")
+	@Column(name = "SALDO", nullable = true)
 	private BigDecimal saldoConta;
 	
 	@Column(name = "DATA_ABERTURA")
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date dataAbertura;  
+	
+	@Column(name = "CHAVE_PIX")
+	private String chavePix;
 	
 	@OneToOne
 	@JsonIgnore
@@ -98,6 +101,13 @@ public class Conta {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	public String getChavePix() {
+		return chavePix;
+	}
+	public void setChavePix(String chavePix) {
+		this.chavePix = chavePix;
+	}
+	
 	
 	
 }

@@ -71,7 +71,8 @@ public class ContaController {
 			(contaService.incluirContas(conta), HttpStatus.CREATED);
 			
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			throw new RuntimeException(e);
+			//return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
 		
@@ -124,16 +125,6 @@ public class ContaController {
 
 	
 	    // 7) Transferência para outra conta existente no sistema
-	    
-//	    @PostMapping("/transferir")
-//	    public Transacao transferirParaOutraConta(@RequestParam int idConta, @RequestParam int numeroAgenciaDestino, 
-//	    @RequestParam int numeroContaDestino, @RequestParam BigDecimal valor, 
-//	    @RequestParam String descricaoTransacao, @RequestParam int temTarifa) {
-//	    	
-//	    	return transacaoService.transferirParaOutraConta(idConta, numeroAgenciaDestino, 
-//	    			numeroContaDestino, valor, descricaoTransacao, temTarifa);
-//	    
-//	    }
 		@PostMapping("/transferir")
 		public Transacao transferirParaOutraConta(@RequestBody TransferenciaDTO transferenciaDTO) {
 		    return transacaoService.transferirParaOutraConta(
@@ -145,18 +136,16 @@ public class ContaController {
 		        transferenciaDTO.getTemTarifa()
 		    );
 		}
-
-	    
-//	    // 8) Fazer saque
-//	    @PostMapping("/saque")
-//	    public Transacao fazerSaque(@RequestParam int idConta, 
-//	    		@RequestParam BigDecimal valor, 
-//	    		@RequestParam int tipoTransacao, 
-//	    		@RequestParam String descricaoTransacao) {
-//	    	
-//	    	return transacaoService.realizarTransacaoDebitar(idConta, valor, tipoTransacao, descricaoTransacao);
-//	    	
-//	    }
+		
+		// Adicionado o método para incluir conta por CPF
+		@PostMapping("/nova/{cpf}")
+		public ResponseEntity<?> incluirContaPorCpf(@PathVariable("cpf") String cpf, @RequestBody Conta conta) {
+		    try {
+		        return new ResponseEntity<>(contaService.incluirContaPorCpf(cpf, conta), HttpStatus.CREATED);
+		    } catch (Exception e) {
+		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		    }
+		}
 	    
 }
 

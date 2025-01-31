@@ -87,7 +87,8 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 	// 7) Método para buscar uma conta pelo número e agência da conta
 		
 		Conta findByNumAgenciaAndNumeroConta(int numAgencia, int numeroConta);
+
+	// 8) Encontrar por chave pix
 		
-
-
+		Conta findByChavePix(String chavePix);
 }

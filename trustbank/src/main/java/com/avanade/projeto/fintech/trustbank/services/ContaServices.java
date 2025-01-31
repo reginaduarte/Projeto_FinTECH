@@ -11,16 +11,19 @@ import com.avanade.projeto.fintech.trustbank.dto.ExtratoDTO;
 import com.avanade.projeto.fintech.trustbank.dto.UsuarioContaDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Conta;
 import com.avanade.projeto.fintech.trustbank.entities.Transacao;
+import com.avanade.projeto.fintech.trustbank.entities.Usuario;
 import com.avanade.projeto.fintech.trustbank.repository.ContaRepository;
 import com.avanade.projeto.fintech.trustbank.repository.TransacaoRepository;
+import com.avanade.projeto.fintech.trustbank.repository.UsuarioRepository;
 
 @Service
 public class ContaServices {
 
 	@Autowired
 	private ContaRepository contaRepository;
-
-
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@Autowired TransacaoRepository transacaoRepository;
 
@@ -102,6 +105,18 @@ public class ContaServices {
 		 transacaoRepository.save(registroTransfDestino); 
 		
   
+	}
+	
+	// Método para incluir conta buscando usuário pelo CPF
+	public Conta incluirContaPorCpf(String cpf, Conta conta) {
+	    Usuario usuario = usuarioRepository.findByCpfUsuario(cpf);
+	    
+	    if (usuario == null) {
+	        throw new RuntimeException("Usuário com CPF " + cpf + " não encontrado");
+	    }
+	    // Associar o usuário a conta e salvar
+	    conta.setUsuario(usuario);
+	    return contaRepository.save(conta);
 	}
 	
 

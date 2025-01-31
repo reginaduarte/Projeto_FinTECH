@@ -38,28 +38,24 @@ public class PixServices {
         return pixRepository.save(pix);
     }
     
-    public Transacao processarPix(int idContaOrigem, int idContaDestino, BigDecimal valor, String chavePix, String descricaoTransacao) {
+    
+    
+    public Transacao processarPix(int idContaOrigem, BigDecimal valor, 
+    		String chavePix, String descricaoTransacao) {
+    	
         // Buscar a conta de origem e destino diretamente pelo ID
         Conta contaOrigem = contaRepository.findByIdConta(idContaOrigem);
         if (contaOrigem == null) {
             throw new RuntimeException("Conta de origem não encontrada");
         }
+        
 
-        Conta contaDestino = contaRepository.findByIdConta(idContaDestino);
+        Conta contaDestino = contaRepository.findByChavePix(chavePix);
         if (contaDestino == null) {
             throw new RuntimeException("Conta de destino não encontrada");
         }
-
-//         //Verificar se a chave PIX existe e está associada a uma transação
-//        Pix pix = pixRepository.findByChavePix(chavePix);
-//        if (pix == null || pix.getTransacao() == null) {
-//            throw new RuntimeException("Chave PIX não encontrada ou sem transação associada");
-//        }
-        
-        Pix pix = pixRepository.findByChavePix(chavePix);
-        if (pix == null) {
-          throw new RuntimeException("Chave PIX não encontrada ou sem transação associada");
-      }
+  
+       
 
         // Obter o valor da transação PIX
 //        BigDecimal valorPix = pix.getTransacao().getValorTransacao();
@@ -82,17 +78,6 @@ public class PixServices {
         // A função 'transferirParaOutraConta' deve fazer a transação de crédito na conta de destino
         contaServices.creditarContaDestino(contaDestino, transacaoDebito);
 
-        // Associar a conta de origem ao PIX
-        pix.setContaOrigem(contaOrigem); 
-
-        // Associar a conta de destino ao PIX
-        pix.setTransacao(transacaoDebito);  // Associando a transação ao PIX para manter o histórico
-
-        // Salvar a transação de PIX com as contas associadas
-        pixRepository.save(pix);
-
         return transacaoDebito;
     }
 }
-
-
