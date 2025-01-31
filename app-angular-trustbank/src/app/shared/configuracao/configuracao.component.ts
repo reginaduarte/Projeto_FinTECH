@@ -12,6 +12,7 @@ import { AtualizacaoService } from '../../services/atualizacao.service';
 export class ConfiguracaoComponent implements OnInit {
   telefone: string = '';
   email: string = '';
+  senha: string = '';
   mensagem: string = '';
   idUsuario: number | null = null; 
 
@@ -33,6 +34,7 @@ export class ConfiguracaoComponent implements OnInit {
         idUsuario: this.idUsuario, 
         telefoneUsuario: this.telefone,
         emailUsuario: this.email,
+        senhaUsuario: this.senha
       };
 
       this.atualizacaoService.atualizarDados(dadosAtualizados).subscribe({
@@ -54,5 +56,6 @@ export class ConfiguracaoComponent implements OnInit {
   resetForm() {
     this.telefone = '';
     this.email = '';
+    this.senha = '';
   }
 }

@@ -2,11 +2,17 @@
     <div class="edicao-dados-container">
       <form (ngSubmit)="onSubmit()" class="edicao-dados-form">
         <h2>Atualize seus Dados Pessoais</h2>
-  
+        <div class="form-row">
         <div class="form-group">
           <label for="telefone"><i class="fas fa-phone"></i>Telefone:</label>
           <input type="tel" id="telefone" [(ngModel)]="telefone" name="telefone" placeholder="Atualize seu o telefone" required />
         </div>
+
+        <div class="form-group">
+          <label for="senha"><i class="fas fa-key"></i>Senha:</label>
+          <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required/>
+        </div>
+      </div>
   
         <div class="form-group">
           <label for="email"><i class="fas fa-envelope"></i>E-mail:</label>

@@ -1,26 +1,26 @@
-<div class="container mt-5">
+<div class="container">
   <h2 class="text-center">Logs de Usuário</h2>
   <div class="row justify-content-end mb-3">
     <div class="col-md-4">
-      <input type="text" class="form-control" placeholder="Pesquisar por nome de usuário" [(ngModel)]="searchTerm" />
+      <input type="text" class="form-control" placeholder="Pesquisar por id de usuário" [(ngModel)]="searchTerm" />
     </div>
   </div>
   <div class="table-responsive">
     <table class="table table-hover">
       <thead class="thead-dark">
-        <tr >
+        <tr>
           <th>ID</th>
-          <th>Nome de Usuário</th>
           <th>Operação</th>
-          <th>Data</th>
+          <th>Data e Horário</th>
+          <th>Campo Alterado</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let log of filterLogs()">
-          <td>{{ log.id }}</td>
-          <td>{{ log.username }}</td>
-          <td>{{ log.operation }}</td>
-          <td>{{ log.date }}</td>
+          <td>{{ log.idLog }}</td>
+          <td>{{ log.tipoAlteracao }}</td>
+          <td>{{ log.dataHoraAlteracao}}</td>
+          <td>{{ log.campoAlterado }}</td>
         </tr>
       </tbody>
     </table>

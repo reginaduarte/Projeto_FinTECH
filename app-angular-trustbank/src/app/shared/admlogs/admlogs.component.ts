@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 interface Log {
-  id: number;
-  username: string;
-  operation: string;
-  date: string;
+  idLog: number;
+  codAdmin: string;
+  idCliente: number;
+  tipoAlteracao: string;
+  dataHoraAlteracao: string; 
+  campoAlterado: string | null;
 }
 
 @Component({
   selector: 'app-admlogs',
-  imports: [FormsModule, CommonModule],
   templateUrl: './admlogs.component.html',
-  styleUrls: ['./admlogs.component.css']
+  styleUrls: ['./admlogs.component.css'],
+  imports: [CommonModule, FormsModule]
 })
 export class AdmlogsComponent implements OnInit {
   logs: Log[] = [];
   searchTerm: string = '';
-  private apiUrl = 'URL_DO_SEU_BACKEND';
+  private apiUrl = 'http://localhost:8080/logs/lista';
 
   constructor(private http: HttpClient) {}
 
@@ -35,8 +36,9 @@ export class AdmlogsComponent implements OnInit {
   }
 
   filterLogs(): Log[] {
+    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
     return this.logs.filter(log =>
-      log.username.toLowerCase().includes(this.searchTerm.toLowerCase())
+      log.idCliente.toString().includes(lowerCaseSearchTerm)
     );
   }
 }

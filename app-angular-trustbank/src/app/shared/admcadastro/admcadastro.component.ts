@@ -31,8 +31,8 @@ export class AdmcadastroComponent {
   };
 
   usuarioParaEdicao: any = null;
-  mensagemSucesso: string = '';  // Mensagem de sucesso
-  modalVisivel: boolean = false;  // Controle de visibilidade do modal
+  mensagemSucesso: string = '';  
+  modalVisivel: boolean = false;  
 
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
@@ -67,17 +67,37 @@ export class AdmcadastroComponent {
 
     this.http.post(urlConta, this.conta).subscribe(
       (response) => {
-        console.log('Conta cadastrada com sucesso:', response);
-        this.mensagemSucesso = 'Conta cadastrada com sucesso!';
-        this.modalVisivel = true;  // Exibe o modal
+        console.log('Usuario cadastrado com sucesso:', response);
+        this.mensagemSucesso = 'Usuário cadastrado com sucesso!';
+        this.modalVisivel = true;  
+        this.resetForm();
       },
       (error) => {
-        console.error('Erro ao cadastrar a conta:', error);
+        console.error('Erro ao cadastrar cliente:', error);
       }
     );
   }
 
   fecharModal() {
-    this.modalVisivel = false;  // Fecha o modal
+    this.modalVisivel = false;  
   }
+    // Método para limpar o formulário
+    resetForm() {
+      this.usuario = {
+        nomeUsuario: '',
+        cpfUsuario: '',
+        emailUsuario: '',
+        senhaUsuario: '',
+        tipoUsuario: 2,
+        dataCriacao: '',
+        telefoneUsuario: ''
+      };
+      this.conta = {
+        numeroConta: 0,
+        numAgencia: 1221,
+        tipoConta: 1,
+        saldoConta: 0.0,
+        dataAbertura: ''
+      };
+    }
 }
