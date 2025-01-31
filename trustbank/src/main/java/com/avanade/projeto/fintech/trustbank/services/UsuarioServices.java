@@ -84,6 +84,7 @@ public class UsuarioServices {
             // Atualiza os dados do usuário
             usuarioAtualizado.setEmailUsuario(usuario.getEmailUsuario());
             usuarioAtualizado.setTelefoneUsuario(usuario.getTelefoneUsuario());
+            usuarioAtualizado.setSenhaUsuario(usuario.getSenhaUsuario());
 
             // Atualiza o tipo da conta, se informado na requisição
             if (usuario.getConta() != null && usuarioAtualizado.getConta() != null) {
