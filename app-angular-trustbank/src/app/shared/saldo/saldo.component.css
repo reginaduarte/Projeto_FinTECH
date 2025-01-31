@@ -1,31 +1,39 @@
 .content-section {
-    width: 100%;
-    max-width: 900px; 
-    padding: 30px; 
-    background-color: #ffffff;
-    border-radius: 15px; 
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
-    margin-top: auto;
-  }
-  
-  .saldo-container {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .saldo-info {
-    margin-bottom: 20px;
-  }
-  
-  .saldo-info p {
-    font-size: 20px;
-    color: #002f67; /* Cor do texto */
-  }
-  
-  h2 {
-    color: #002f67;
-    text-align:auto;
-    margin-bottom: 20px; 
-    font-size: 28px; 
-  }
+  width: 100%;
+  max-width: 900px; 
+  padding: 30px; 
+  background-color: #ffffff;
+  border-radius: 15px; 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); 
+  margin-top: auto;
+  text-align: center;
+}
+
+.saldo-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: linear-gradient(45deg, #0066cc, #004080); 
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.saldo-info {
+  margin-bottom: 20px;
+}
+
+.saldo-info p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+}
+
+h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+}

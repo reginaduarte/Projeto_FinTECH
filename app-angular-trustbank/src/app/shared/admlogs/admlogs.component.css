@@ -1,0 +1,23 @@
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+.thead-dark {
+  background-color: #004080;
+  color: #ffffff;
+}
+
+h2{
+  color: #004080;
+}

@@ -30,7 +30,7 @@ export class LoginComponent {
       error: (err) => {
         console.error('Erro de login', err);
         if (err.status === 401) {
-          this.mensagemErro = 'Credenciais inválidas!';  // Exibe uma mensagem de erro
+          this.mensagemErro = 'Credenciais inválidas!';  
         } else {
           this.mensagemErro = 'Ocorreu um erro ao tentar fazer login. Tente novamente mais tarde.';
         }

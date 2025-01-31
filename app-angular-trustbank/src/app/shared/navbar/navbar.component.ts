@@ -26,4 +26,5 @@ export class NavbarComponent {
     this.showClientLogin = false;
     this.showManagerLogin = false;
   }
+
 }

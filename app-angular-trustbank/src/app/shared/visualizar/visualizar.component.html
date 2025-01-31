@@ -1,32 +1,47 @@
-<div class="margem">
-  <h2 class="text-primary text-center">Visualizar Usuários</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>CPF</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Tipo de Usuário</th>
-        <th>Data de Criação</th>
-        <th>Número da Conta</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let usuario of usuarios; let i = index">
-        <td>{{ usuario.idUsuario }}</td>
-        <td>{{ usuario.cpf }}</td>
-        <td>{{ usuario.nome }}</td>
-        <td>{{ usuario.email }}</td>
-        <td>{{ usuario.tipoUsuario }}</td>
-        <td>{{ usuario.dataCriacao }}</td>
-        <td>{{ usuario.numeroConta }}</td>
-        <td>
-          <button class="btn btn-warning" (click)="editarUsuario(i)">Editar</button>
-          <button class="btn btn-danger" (click)="deletarUsuario(i)">Deletar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div id="quadrado-container" class="content-section">
+  <div class="visualizar-container">
+    <h2>Gerenciar Clientes</h2>
+
+    <div class="usuario-titulo">
+      <div><strong>ID</strong></div>
+      <div><strong>CPF</strong></div>
+      <div><strong>Nome</strong></div>
+      <div><strong>E-mail</strong></div>
+      <div><strong>Telefone</strong></div>
+      <div><strong>Abertura</strong></div>
+      <div><strong>Nº Conta</strong></div>
+      <div><strong>Agência</strong></div>
+      <div><strong>Tipo</strong></div>
+      <div><strong>Ações</strong></div> 
+    </div>
+
+    <div class="usuario-lista">
+      <div *ngFor="let usuario of usuarios; let i = index" class="usuario-item">
+        <div>{{ usuario.idUsuario }}</div>
+        <div>{{ usuario.cpfUsuario }}</div>
+        <div>{{ usuario.nomeUsuario }}</div>
+        <div class="email">{{ usuario.emailUsuario }}</div>
+        <div>{{ usuario.telefoneUsuario }}</div>
+        <div>{{ usuario.dataCriacao }}</div>
+        <div>{{ usuario.conta?.numeroConta }}</div>
+        <div>{{ usuario.conta?.numAgencia }}</div>
+        <div>{{ usuario.conta?.tipoConta == 1 ? 'Simples' : 'Premium' }}</div>
+        <div class="acoes">
+          <button (click)="editarUsuario(usuario)">
+            <i class="bi bi-pencil-square" id="update"></i>
+          </button>|
+          <button (click)="deletarUsuario(usuario.cpfUsuario)">
+            <i class="bi bi-trash3" id="delete"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Edição -->
+  <app-usuarioedicao 
+    [usuarioParaEdicao]="usuarioParaEdicao"
+    (cancelar)="cancelarEdicao()"
+    (salvar)="salvarEdicao($event)">
+  </app-usuarioedicao>
 </div>

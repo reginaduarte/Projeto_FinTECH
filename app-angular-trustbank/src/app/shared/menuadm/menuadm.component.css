@@ -42,7 +42,7 @@
 
   
   .container-content {
-    margin-left: 260px; /* Largura igual ao do menu */
+    margin-left: 260px; 
     margin-top: auto;
     padding: 20px;
     background-color: white;
@@ -51,3 +51,8 @@
   }
 
   
+/* Logo da marca */
+.brand-logo i{
+  font-size: 1.1em;
+  font-weight: bold;
+}

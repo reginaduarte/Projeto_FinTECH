@@ -1,0 +1,71 @@
+<div class="content-section">
+  <h1>Cadastrar cliente</h1>
+
+  <form (ngSubmit)="cadastrarUsuario()">
+      <div class="form-group">
+        <label for="nomeUsuario"><i class="fas fa-user"></i> Nome:</label>
+        <input 
+          type="text" 
+          id="nomeUsuario" 
+          [(ngModel)]="usuario.nomeUsuario" 
+          name="nomeUsuario" 
+          placeholder="Digite o nome do cliente" 
+          required 
+        />
+      </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="cpfUsuario"><i class="fas fa-id-card"></i> CPF:</label>
+        <input 
+          type="text" 
+          id="cpfUsuario" 
+          [(ngModel)]="usuario.cpfUsuario" 
+          name="cpfUsuario" 
+          placeholder="Digite o CPF do cliente" 
+          required 
+        />
+      </div>
+    
+      <div class="form-group">
+        <label for="emailUsuario"><i class="fas fa-envelope"></i> E-mail:</label>
+        <input 
+          type="email" 
+          id="emailUsuario" 
+          [(ngModel)]="usuario.emailUsuario" 
+          name="emailUsuario" 
+          placeholder="Digite o e-mail do cliente" 
+          required 
+        />
+      </div>
+    </div>
+      <div class="form-row">
+      <div class="form-group">
+        <label for="senhaUsuario"><i class="fas fa-lock"></i> Senha:</label>
+        <input 
+          type="password" 
+          id="senhaUsuario" 
+          [(ngModel)]="usuario.senhaUsuario" 
+          name="senhaUsuario" 
+          placeholder="Digite uma senha para o cliente" 
+          required 
+        />
+      </div>
+    
+      <div class="form-group">
+        <label for="telefoneUsuario"><i class="fas fa-phone"></i> Telefone:</label>
+        <input 
+          type="text" 
+          id="telefoneUsuario" 
+          [(ngModel)]="usuario.telefoneUsuario" 
+          name="telefoneUsuario" 
+          placeholder="Digite o telefone do cliente" 
+          required 
+        />
+      </div>
+      </div>
+    <button type="submit" class="btn-submit">Cadastrar</button>
+  </form>
+  <div *ngIf="mensagemSucesso" class="success-message">
+    {{ mensagemSucesso }}
+  </div>
+</div>

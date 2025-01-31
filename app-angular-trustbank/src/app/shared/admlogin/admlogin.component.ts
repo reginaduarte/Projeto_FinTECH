@@ -24,12 +24,12 @@ export class AdmLoginComponent {
     this.admService.login(this.emailUsuario, this.senhaUsuario).subscribe({
       next: (response) => {
         console.log('Login bem-sucedido!', response);
-        this.router.navigate(['/adm']);  
+        this.router.navigate(['/adm/admstart']);  
       },
       error: (err) => {
         console.error('Erro de login', err);
         if (err.status === 401) {
-          this.mensagemErro = 'Credenciais inválidas!';  // Exibe uma mensagem de erro
+          this.mensagemErro = 'Credenciais inválidas!';
         } else {
           this.mensagemErro = 'Ocorreu um erro ao tentar fazer login. Tente novamente mais tarde.';
         }
@@ -37,6 +37,6 @@ export class AdmLoginComponent {
     });
   }
   closeLogin() {
-    this.close.emit(); // Emite o evento para fechar o modal
+    this.close.emit(); 
   }
 }

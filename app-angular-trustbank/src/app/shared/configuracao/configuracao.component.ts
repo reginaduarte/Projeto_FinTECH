@@ -13,25 +13,24 @@ export class ConfiguracaoComponent implements OnInit {
   telefone: string = '';
   email: string = '';
   mensagem: string = '';
-  idConta: number | null = null; 
+  idUsuario: number | null = null; 
 
   constructor(private atualizacaoService: AtualizacaoService) {}
 
   ngOnInit(): void {
-    // Pegando o idConta do localStorage
-    const idConta = localStorage.getItem('idConta');
-    if (idConta) {
-      this.idConta = Number(idConta); 
+    const idUsuario = localStorage.getItem('idUsuario');
+    if (idUsuario) {
+      this.idUsuario = Number(idUsuario); 
     } else {
-      console.error('ID da conta não encontrado');
+      console.error('ID do usuário não encontrado');
     }
   }
 
   // Método para atualizar os dados do usuário
   onSubmit() {
-    if (this.telefone && this.email && this.idConta !== null) {
+    if (this.telefone && this.email && this.idUsuario !== null) {
       const dadosAtualizados = {
-        idUsuario: this.idConta, 
+        idUsuario: this.idUsuario, 
         telefoneUsuario: this.telefone,
         emailUsuario: this.email,
       };

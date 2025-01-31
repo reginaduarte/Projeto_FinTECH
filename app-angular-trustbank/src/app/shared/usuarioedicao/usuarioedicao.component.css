@@ -1,0 +1,128 @@
+/* Modal */
+.modal {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 1x;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    margin-bottom: auto;
+  }
+  
+  .login-page {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 750px;
+    height: 80%;
+    position: relative; 
+  }
+  
+  .login-card {
+    padding: 20px;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px; 
+    cursor: pointer;
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    color: #002f67;
+    text-align: center;
+    width: 40px; 
+    height: 40px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 50%; 
+  }
+
+  .close-btn:focus {
+    outline: none;
+  }
+  
+  .brand-logo {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #002f67;
+  }
+  
+  .brand-logo i {
+    margin-right: 10px;
+    color: #002f67;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+  
+  label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #002f67;
+    margin-bottom: 10px;
+  }
+  
+  i {
+    margin-right: 5px;
+  }
+  
+  input, select {
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    width: 300px; 
+    box-sizing: border-box; 
+  }
+  
+  input:focus, select:focus {
+    border-color: #002f67;
+    outline: none;
+  }
+  
+  button {
+    background-color: #002f67;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #004e9b;
+  }
+  
+  .mensagem {
+    color: red;
+  }
+  .input{
+    color: #002f67;
+  }

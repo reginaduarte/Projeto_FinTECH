@@ -14,12 +14,13 @@ import { LogoutComponent } from './shared/logout/logout.component';
 import { AdmComponent } from './pages/adm/adm.component';
 import { FormComponent } from './shared/form/form.component';
 import { AdmlogoutComponent } from './shared/admlogout/admlogout.component';
-import { MenuadmComponent } from './shared/menuadm/menuadm.component';
+import { AdmstartComponent } from './shared/admstart/admstart.component';
+import { AdmlogsComponent } from './shared/admlogs/admlogs.component';
+import { VisualizarComponent } from './shared/visualizar/visualizar.component';
+import { AdmcadastroComponent } from './shared/admcadastro/admcadastro.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'adm', component: AdmComponent },
-  {path: 'form', component: FormComponent },
   {
     path: 'trustbank',
     component: TrustBankComponent, 
@@ -37,12 +38,13 @@ export const routes: Routes = [
       { path: '', redirectTo: 'start', pathMatch: 'full' } 
     ]
   },
-  { path: 'adm', component: AdmComponent,
+  { path: 'adm', 
+    component: AdmComponent, 
     children: [
-      // { path: 'admstart', component: AdmstartComponent},
-      // { path: 'admcadastro', component: AdmcadastroComponent },
-      // { path: 'visualizar', component: VisualizarComponent },
-      // { path: 'admlogs', component: AdmlogsComponent },
+      { path: 'admstart', component: AdmstartComponent},
+      { path: 'admcadastro', component: AdmcadastroComponent },
+      { path: 'visualizar', component: VisualizarComponent },
+      { path: 'admlogs', component: AdmlogsComponent },
       { path: 'admlogout', component: AdmlogoutComponent },
       { path: '', redirectTo: 'admstart', pathMatch: 'full' }
     ]

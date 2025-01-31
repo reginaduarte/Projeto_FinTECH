@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AtualizacaoService {
+export class AtualizarService {
   private apiUrl = 'http://localhost:8080/users';
 
   constructor(private http: HttpClient) {}
@@ -15,7 +15,7 @@ export class AtualizacaoService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(url, usuario, {
       headers: headers,
-      responseType: 'text', // Adiciona responseType: 'text' para interpretar a resposta como texto
+      responseType: 'text',
     });
   }
 }

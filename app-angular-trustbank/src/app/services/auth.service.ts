@@ -18,8 +18,7 @@ export class AuthService {
       responseType: 'json'
     }).pipe(
       tap((response: any) => {
-        // Armazenando os dados do usuário após o login
-        this.storeUserData(response);  // Chama o método para armazenar os dados
+        this.storeUserData(response);  
       })
     );
   }
@@ -27,8 +26,9 @@ export class AuthService {
   storeUserData(response: any): void {
     // Armazenando os dados no localStorage
     localStorage.setItem('idConta', response.idConta.toString());
-    localStorage.setItem('numeroConta', response.numeroConta.toString());  // Adicionando numeroConta
-    localStorage.setItem('numAgencia', response.numAgencia.toString());      // Adicionando numAgencia
+    localStorage.setItem('idUsuario', response.idUsuario.toString());
+    localStorage.setItem('numeroConta', response.numeroConta.toString());  
+    localStorage.setItem('numAgencia', response.numAgencia.toString());      
     localStorage.setItem('nomeUsuario', response.nomeUsuario);
     localStorage.setItem('cpfUsuario', response.cpfUsuario);
     localStorage.setItem('telefoneUsuario', response.telefoneUsuario);
@@ -41,8 +41,9 @@ export class AuthService {
   getUserData(): any {
     return {
       idConta: localStorage.getItem('idConta'),
-      numeroConta: localStorage.getItem('numeroConta'),  // Recuperando numeroConta
-      numAgencia: localStorage.getItem('numAgencia'),    // Recuperando numAgencia
+      idUsuario: localStorage.getItem('idUsuario'),
+      numeroConta: localStorage.getItem('numeroConta'),  
+      numAgencia: localStorage.getItem('numAgencia'),    
       nomeUsuario: localStorage.getItem('nomeUsuario'),
       cpfUsuario: localStorage.getItem('cpfUsuario'),
       telefoneUsuario: localStorage.getItem('telefoneUsuario'),
@@ -57,11 +58,15 @@ export class AuthService {
     return Number(localStorage.getItem('idConta'));  
   }
 
+  getIdUsuario(): number{
+    return Number(localStorage.getItem('idUsuario'));
+  }
+
   getNumeroConta(): number {
-    return Number(localStorage.getItem('numeroConta'));  // Método para pegar o numeroConta
+    return Number(localStorage.getItem('numeroConta'));  
   }
 
   getNumAgencia(): number {
-    return Number(localStorage.getItem('numAgencia'));    // Método para pegar o numAgencia
+    return Number(localStorage.getItem('numAgencia'));  
   }
 }

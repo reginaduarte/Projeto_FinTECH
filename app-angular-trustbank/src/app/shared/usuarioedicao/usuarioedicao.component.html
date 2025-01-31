@@ -1,0 +1,69 @@
+<div class="modal" *ngIf="usuarioParaEdicao">
+    <div class="login-page">
+      <div class="login-card">
+        <button class="close-btn" (click)="cancelarEdicao()">×</button>
+        <div class="brand-logo">
+          <i class="fas fa-user-edit"></i>
+          <span>Atualização dos Clientes</span>
+        </div>
+        <div class="form-row">
+          <div class="login-container">
+            <form (ngSubmit)="salvarEdicao()">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nomeUsuario"><i id="icon" class="fas fa-user"></i> Nome</label>
+                  <input
+                    type="text"
+                    id="nomeUsuario"
+                    placeholder="Digite o nome do usuário"
+                    [(ngModel)]="usuarioParaEdicao.nomeUsuario"
+                    name="nomeUsuario"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="emailUsuario"><i id="icon" class="fas fa-envelope"></i> E-mail</label>
+                  <input
+                    type="email"
+                    id="emailUsuario"
+                    placeholder="Digite o e-mail"
+                    [(ngModel)]="usuarioParaEdicao.emailUsuario"
+                    name="emailUsuario"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="telefoneUsuario"><i id="icon" class="fas fa-phone"></i> Telefone</label>
+                  <input
+                    type="text"
+                    id="telefoneUsuario"
+                    placeholder="Digite o telefone"
+                    [(ngModel)]="usuarioParaEdicao.telefoneUsuario"
+                    name="telefoneUsuario"
+                    required
+                  />
+                </div>
+              <div class="form-group">
+                <label for="tipoConta"><i id="icon" class="fas fa-credit-card"></i> Tipo da Conta</label>
+                <select
+                  id="tipoConta"
+                  [(ngModel)]="usuarioParaEdicao.conta.tipoConta"
+                  name="tipoConta"
+                  required
+                >
+                  <option value="1">Simples</option>
+                  <option value="2">Premium</option>
+                </select>
+              </div>
+            </div>            
+  
+              <button type="submit" class="login-btn">Salvar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

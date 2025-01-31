@@ -2,13 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { VisualizarComponent } from "../visualizar/visualizar.component";
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
-  imports: [CommonModule, FormsModule, VisualizarComponent]
+  imports: [CommonModule, FormsModule]
 })
 export class FormComponent {
   usuario = {

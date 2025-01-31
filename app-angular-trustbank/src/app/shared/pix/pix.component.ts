@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { PixService } from '../../services/pix.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pix',
@@ -13,26 +14,32 @@ export class PixComponent {
   chavePix: string = '';
   data: string = '';
   valor: number = 0;
-  descricao: string = ''; 
+  descricao: string = '';
   senha: string = '';
-  mensagem: string | null = null;
+  mensagem: string = '';
 
-  // Método chamado quando o formulário é submetido
+  constructor(private pixService: PixService) {}
+
   onSubmit() {
-    if (this.tipoChave && this.chavePix && this.data && this.valor && this.senha) {
-      // Simula o envio dos dados e retorna uma mensagem de sucesso
-      this.mensagem = 'Pix processado com sucesso!';
-    } else {
-      // Mensagem de erro se algum campo não for preenchido
-      this.mensagem = 'Por favor, preencha todos os campos.';
+    const idContaOrigem = localStorage.getItem('idConta'); // Pega do localStorage
+    if (!idContaOrigem) {
+      this.mensagem = 'Erro: Conta de origem não encontrada.';
+      return;
     }
-
-    // Limpa os campos após a submissão 
-    this.tipoChave = '';
-    this.chavePix = '';
-    this.data = '';
-    this.valor = 0;
-    this.descricao = '';
-    this.senha = '';
-  }
+  
+    const valor = this.valor;
+    const chavePix = this.chavePix;
+    const descricaoTransacao = this.descricao;
+  
+    this.pixService.processarPix(Number(idContaOrigem), valor, chavePix, descricaoTransacao).subscribe({
+      next: (response) => {
+        this.mensagem = 'Pix processado com sucesso!';
+        console.log(response);
+      },
+      error: (err) => {
+        this.mensagem = 'Erro ao processar o Pix: ' + err.error;
+        console.error(err);
+      }
+    });
+  }  
 }
