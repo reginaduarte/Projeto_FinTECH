@@ -82,6 +82,7 @@ public class UsuarioServices {
             Usuario usuarioAtualizado = usuarioExistente.get();
             
             // Atualiza os dados do usuário
+            usuarioAtualizado.setNomeUsuario(usuario.getNomeUsuario());
             usuarioAtualizado.setEmailUsuario(usuario.getEmailUsuario());
             usuarioAtualizado.setTelefoneUsuario(usuario.getTelefoneUsuario());
             usuarioAtualizado.setSenhaUsuario(usuario.getSenhaUsuario());

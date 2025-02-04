@@ -1,6 +1,8 @@
 package com.avanade.projeto.fintech.trustbank.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,15 +34,32 @@ public class AdministradorController {
 	}
 	
 	// Adicionado o método para autenticação do login
+//	@PostMapping("/login")
+//	public ResponseEntity<?> login(@RequestBody Administrador loginRequest) {
+//	    Administrador admin = adminService.validarCredenciais(loginRequest.getEmailUsuario(), loginRequest.getSenhaUsuario());
+//	    if (admin != null) {
+//	        return ResponseEntity.ok("Login realizado com sucesso!"); 
+//	    } else {
+//	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
+//	    }
+//	}
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody Administrador loginRequest) {
 	    Administrador admin = adminService.validarCredenciais(loginRequest.getEmailUsuario(), loginRequest.getSenhaUsuario());
+	    
 	    if (admin != null) {
-	        return ResponseEntity.ok("Login realizado com sucesso!"); 
+	        // Criar um objeto de resposta com o ID e o nome do administrador
+	        Map<String, Object> response = new HashMap<>();
+	        response.put("idAdmin", admin.getIdAdmin());
+	        response.put("nomeUsuario", admin.getNomeUsuario());
+
+	        return ResponseEntity.ok(response);
 	    } else {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
 	    }
 	}
+
+	
 	
 	@PostMapping("/novo")
 	public ResponseEntity<?> incluir(@RequestBody Administrador admin){
