@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
 import { ExtratoService } from '../../services/extrato.service';
 import { AuthService } from '../../services/auth.service'; 
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt);
 
 @Component({
   selector: 'app-extrato',
   templateUrl: './extrato.component.html',
   styleUrls: ['./extrato.component.css'],
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, CurrencyPipe],
 })
 export class ExtratoComponent implements OnInit {
   dataInicio: string = '';
@@ -71,7 +74,7 @@ export class ExtratoComponent implements OnInit {
   private addOneDayToDate(date: string): string {
     const partes = date.split('-');
     const data = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]));
-    data.setDate(data.getDate() + 1); // Adiciona 1 dia
+    data.setDate(data.getDate() + 1); 
     const novaData = data.toISOString().split('T')[0];
     return novaData;
   }

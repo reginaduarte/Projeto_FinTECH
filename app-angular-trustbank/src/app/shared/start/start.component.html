@@ -1,2 +1,40 @@
-<h1>Bem-vindo(a) ao Trust Bank!</h1>
-<p>Escolha uma opção no menu lateral para começar.</p>
+<div class="saldo-container">
+  <span class="saldo-text" *ngIf="!isSaldoVisible">Saldo: R$ *****</span>
+  <span class="saldo-text" *ngIf="isSaldoVisible">Saldo: R$ {{ saldo | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+  <i class="fas" [ngClass]="isSaldoVisible ? 'fa-eye-slash' : 'fa-eye'" (click)="toggleSaldoVisibility()"></i>
+</div>
+
+<h1>Bem-vinda <span> {{ nomeUsuario }} </span> ao Trust Bank!</h1>
+<p>Escolha uma opção ao lado para começar.</p>
+<div class="container">
+  <app-dollar></app-dollar>
+  <app-card></app-card>
+</div>
+<div class="container-flex">
+  <div class="card mb-3" style="max-width: 640px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="assets/finance.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Gerencie suas finanças</h5>
+          <p class="card-text">Acompanhe seu saldo, visualize extratos e tenha total controle das suas movimentações bancárias. Sua conta sempre acessível e segura!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="max-width: 640px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="assets/finance2.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Transações Simples e Rápidas</h5>
+          <p class="card-text">Faça depósitos, transferências e PIX de maneira descomplicada. Seu dinheiro na hora, sem taxas escondidas!</p>
+        </div>
+      </div>
+    </div>
+  </div>

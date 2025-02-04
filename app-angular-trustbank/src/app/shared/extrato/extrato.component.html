@@ -28,7 +28,7 @@
     <div class="transacao-lista">
       <div *ngFor="let transacao of transacoes" class="transacao-item">
         <div>{{ transacao.dataTransacao }}</div>
-        <div>R$ {{ transacao.valorTransacao | number: '1.2-2' }}</div>
+        <div>R$ {{ transacao.valorTransacao | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
         <div>{{ transacao.tipoTransacao }}</div>
         <div>{{ transacao.descricaoTransacao }}</div>
         <div>{{transacao.tipoOperacao}}</div>

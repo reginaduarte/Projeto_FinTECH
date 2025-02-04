@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SaldoService } from '../../services/saldo.service';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 @Component({
   selector: 'app-saldo',
@@ -11,11 +13,11 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class SaldoComponent implements OnInit {
 
-  saldo: number = 0;  // Inicializa o saldo como 0
+  saldo: number = 0;  
 
   constructor(
     private saldoService: SaldoService,
-    private authService: AuthService  // Injetando o AuthService
+    private authService: AuthService 
   ) { }
 
   ngOnInit(): void {

@@ -1,0 +1,22 @@
+<div class="dollar-rate-container" *ngIf="dollarRate">
+  <div class="flag-container">
+    <img src="assets/estados-unidos.png" alt="USA">
+    <img src="assets/brasil.png" alt="Brasil">
+  </div>
+  
+  <h2>1 Dólar Americano =</h2>
+  <h1>{{ dollarRate.ask | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} Reais</h1>
+  <p>Última atualização: {{ lastUpdated | date:'d MMMM HH:mm' }} UTC</p>
+  
+  <div class="exchange-box">
+    <div class="currency-box">
+      <label>USD $ - Dólar</label>
+      <input type="number" [(ngModel)]="usdValue" (input)="convertToBRL()" />
+    </div>
+    <span>⇄</span>
+    <div class="currency-box">
+      <label>BRL R$ - Real</label>
+      <input type="text" [value]="brlValue | currency:'BRL':'symbol':'1.2-2':'pt-BR'" readonly />
+    </div>
+  </div>
+</div>

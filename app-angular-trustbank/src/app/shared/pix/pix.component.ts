@@ -37,7 +37,7 @@ export class PixComponent {
         console.log(response);
       },
       error: (err) => {
-        this.mensagem = 'Erro ao processar o Pix: ' + err.error;
+        this.mensagem = 'Erro ao processar o Pix. ';
         console.error(err);
       }
     });

@@ -1,12 +1,14 @@
 .content-section {
   width: 100%;
-  max-width: 900px; 
+  max-width: 1050px;
+  height: 33.6em;  
   padding: 30px; 
-  background-color: #ffffff;
+  background-color: #f0f8ff;
   border-radius: 15px; 
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); 
   margin-top: auto;
   text-align: center;
+  margin-top: 11px;
 }
 
 .saldo-container {
@@ -36,4 +38,13 @@ h2 {
   font-size: 28px;
   text-transform: uppercase; 
   letter-spacing: 2px; 
+}
+
+.image-wrapper{
+  display: flex;
+  justify-content: center;
+}
+img{
+  width: 32%;
+  margin-bottom: 1em;
 }

@@ -6,6 +6,9 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  getnomeUsuario() {
+    throw new Error('Method not implemented.');
+  }
   private loginUrl = 'http://localhost:8080/users/login';
   private idConta: number = 0;
 
@@ -69,4 +72,8 @@ export class AuthService {
   getNumAgencia(): number {
     return Number(localStorage.getItem('numAgencia'));  
   }
+
+  getNomeUsuario(): string | null {
+    return localStorage.getItem('nomeUsuario');
+  }  
 }

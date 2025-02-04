@@ -85,8 +85,7 @@ input:focus {
 }
 
 .success-message {
-  color: green;
-  font-weight: bold;
+  color: black;
   margin-top: 15px;
-  text-align: center;
+  text-align:justify;
 }

@@ -1,0 +1,110 @@
+.card-bancario {
+    width: 420px;
+    height: 235px;
+    background: linear-gradient(135deg, #004080, #002b5e);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: -1em;
+    margin-left: 50px;;
+}
+
+.card-bancario::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    z-index: -1;
+    border-radius: 15px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bank-logo {
+    width: 40px;
+    height: auto;
+    margin-top: 8px;
+}
+
+.chip {
+    width: 40px;
+    height: auto;
+}
+
+.nome {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.dados {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.dados p {
+    margin: 5px 0;
+}
+
+span {
+    font-weight: bold;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer p {
+    font-size: 12px;
+}
+
+.footer i {
+    font-size: 20px;
+    color: white;
+}
+
+.card-bancario:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+i{
+    margin-bottom: auto;
+}
+
+.bandeira-cartao {
+    width: 3.5em; 
+    height: auto;
+    margin-top: -1em;
+}
+
+.contac{
+    width: 8%;
+    margin-right: 13.2em;
+}

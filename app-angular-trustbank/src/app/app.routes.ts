@@ -21,6 +21,7 @@ import { AdmcadastroComponent } from './shared/admcadastro/admcadastro.component
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'form', component: FormComponent},
   {
     path: 'trustbank',
     component: TrustBankComponent, 

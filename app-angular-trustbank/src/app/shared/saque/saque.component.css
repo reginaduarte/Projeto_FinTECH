@@ -1,42 +1,41 @@
 .content-section {
   width: 100%;
-  max-width: 900px; 
-  padding: 30px; 
-  background-color: #ffffff;
-  border-radius: 15px; 
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
-}
-
-h2 {
-  color: #002f67;
-  text-align:start;
-  margin-bottom: 2px; 
-  font-size: 28px; 
+  max-width: 1050px;
+  height: 33.6em;  
+  padding: 30px;
+  background-color: #f0f8ff;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px; 
+  margin-top: 11px;
 }
 
 .form-saque {
   display: flex;
   flex-direction: column;
-  gap: 30px; 
+  gap: 30px;
 }
 
 .form-row {
   display: flex;
-  gap: 30px; 
+  gap: 30px;
 }
 
 .form-group {
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
 }
 
 label {
-  font-size: 18px; 
+  font-size: 18px;
   font-weight: bold;
   color: #002f67;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 i {
@@ -44,11 +43,12 @@ i {
 }
 
 input {
-  padding: 15px; 
-  font-size: 18px; 
+  padding: 12px;
+  font-size: 18px;
   border: 1px solid #ccc;
-  border-radius: 8px; 
+  border-radius: 8px;
   transition: border-color 0.3s;
+  border-color: #002f67;
 }
 
 input:focus {
@@ -57,18 +57,58 @@ input:focus {
 }
 
 .btn-submit {
-  padding: 18px; 
-  font-size: 18px; 
+  padding: 15px;
+  font-size: 18px;
   background-color: #002f67;
   color: #fff;
   border: none;
-  border-radius: 8px; 
+  border-radius: 8px;
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s;
-  margin-top: 30px;
   width: 100%;
 }
+
 .mensagem {
-  color: red;
+  color: black;
+}
+
+h1,h2 {
+  color: #002f67;
+  text-align: start;
+  font-size: 28px;
+}
+
+.form-wrapper {
+  flex: 1;
+  max-width: 100%; 
+}
+
+.image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; 
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain; 
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column; 
+    text-align: center;
+  }
+
+  .form-wrapper, .image-wrapper {
+    max-width: 100%;
+  }
+
+  .image-wrapper img {
+    max-width: 100%; 
+  }
 }

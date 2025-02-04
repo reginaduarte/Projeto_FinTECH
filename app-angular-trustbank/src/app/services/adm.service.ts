@@ -14,10 +14,32 @@ export class AdmService {
   login(emailUsuario: string, senhaUsuario: string): Observable<any> {
     const body = { emailUsuario, senhaUsuario };
     return this.http.post(this.loginUrl, body, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'text' 
-    });
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    }).pipe(
+      tap((response: any) => {
+        this.storeUserData(response);
+      })
+    );
   }
+  getidAdmin(): number {
+    return Number(localStorage.getItem('idAdmin'));  
+  }
+  getnomeUsuario(): string | null {
+    return localStorage.getItem('nomeUsuario');
+  }  
+  storeUserData(response: any): void {
+    // Armazenando os dados no localStorage
+    localStorage.setItem('idAdmin', response.idAdmin.toString());
+    localStorage.setItem('nomeUsuario', response.nomeUsuario.toString());
+  }
+
+  getUserData(): any {
+    return {
+      idAdmin: localStorage.getItem('idAdmin'),
+      nomeUsuario: localStorage.getItem('nomeUsuario')
+    };
+  }
+
 
   listarClientes(): Observable<any> {
     return this.http.get<any>(this.listarClientesUrl, {

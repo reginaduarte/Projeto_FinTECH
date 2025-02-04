@@ -1,56 +1,71 @@
-<div id="quadrado-container" class="content-section">
-  <div class="pix-container">
-    <form (ngSubmit)="onSubmit()" class="pix-form">
-      <h2>Informações do Pix</h2>
-
-      <div class="form-row">
-      <div class="form-group">
-        <label for="tipo-chave"><i class="fas fa-key"></i>Tipo da Chave:</label>
-        <select id="tipo-chave" [(ngModel)]="tipoChave" name="tipo-chave" required>
-          <option value="">Selecione o tipo da chave</option>
-          <option value="cpf">CPF</option>
-          <option value="cnpj">CNPJ</option>
-          <option value="email">E-mail</option>
-          <option value="telefone">Telefone</option>
-          <option value="chave-aleatoria">Chave Aleatória</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="chave-pix"><i class="fas fa-address-card"></i>Chave Pix:</label>
-        <input type="text" id="chave-pix" [(ngModel)]="chavePix" name="chave-pix" placeholder="Digite a chave Pix" required />
-      </div>
-      </div>
-
+<div class="content-section">
+  <div class="form-wrapper">
+    <form (ngSubmit)="onSubmit()" class="form-deposito">
+      <h2>Realizar Transferêcia</h2>
       <div class="form-row">
         <div class="form-group">
-          <label for="data"><i class="fas fa-calendar"></i>Data:</label>
-          <input type="date" id="data" [(ngModel)]="data" name="data" required />
+          <label for="tipo-chave"><i class="fas fa-key"></i>Tipo da Chave:</label>
+          <select id="tipo-chave" [(ngModel)]="tipoChave" name="tipo-chave" required>
+            <option value="">Selecione o tipo da chave</option>
+            <option value="cpf">CPF</option>
+            <option value="cnpj">CNPJ</option>
+            <option value="email">E-mail</option>
+            <option value="telefone">Telefone</option>
+            <option value="chave-aleatoria">Chave Aleatória</option>
+          </select>
         </div>
-
+  
         <div class="form-group">
-          <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
-          <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
+          <label for="chave-pix"><i class="fas fa-address-card"></i>Chave Pix:</label>
+          <input type="text" id="chave-pix" [(ngModel)]="chavePix" name="chave-pix" placeholder="Digite a chave Pix" required />
+        </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="data"><i class="fas fa-calendar"></i>Data:</label>
+            <input type="date" id="data" [(ngModel)]="data" name="data" required />
+          </div>
+  
+          <div class="form-group">
+            <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
+            <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
+          </div>
+        </div>
+  
+        <div class="form-row">
+        <div class="form-group">
+          <label for="descricao"><i class="fa fa-comment"></i>Descrição:</label>
+          <input type="text" id="descricao" [(ngModel)]="descricao" name="descricao" placeholder="Informe uma descrição" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="senha"><i class="fas fa-lock"></i>Senha:</label>
+          <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
         </div>
       </div>
-
-      <div class="form-row">
-      <div class="form-group">
-        <label for="descricao"><i class="fas fa-key"></i>Descrição:</label>
-        <input type="text" id="descricao" [(ngModel)]="descricao" name="descricao" placeholder="Digite uma descrição" required />
-      </div>
-
-      <div class="form-group">
-        <label for="senha"><i class="fas fa-lock"></i>Senha:</label>
-        <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
-      </div>
-    </div>
-
-      <button type="submit" class="btn-submit">Pagar Pix</button>
-
-      <div class="mensagem" *ngIf="mensagem">
-        {{ mensagem }}
+  
+      <button type="submit" class="btn-submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Pagar Pix</button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-university"></i>Trust Bank</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              <div class="mensagem" *ngIf="mensagem">{{ mensagem }}</div>
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
+  </div>
+  <div class="image-wrapper">
+    <img src="assets/pix.png" alt="img pix">
   </div>
 </div>

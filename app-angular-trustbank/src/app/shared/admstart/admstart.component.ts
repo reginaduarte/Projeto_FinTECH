@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdmService } from '../../services/adm.service';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admstart',
-  imports: [RouterLink],
   templateUrl: './admstart.component.html',
-  styleUrl: './admstart.component.css'
+  styleUrls: ['./admstart.component.css'],
+  imports: [RouterLink]
 })
-export class AdmstartComponent {
+export class AdmstartComponent implements OnInit {
+  nomeAdmin: string | null = '';
 
-  constructor(router : Router){}
+  constructor(private router : Router,private admService: AdmService) {}
 
+  ngOnInit() {
+    const nomeCompleto = this.admService.getnomeUsuario()
+    if (nomeCompleto) {
+      this.nomeAdmin = nomeCompleto.split(' ')[0]; // Pega apenas o primeiro nome
+    }
+  }
 }

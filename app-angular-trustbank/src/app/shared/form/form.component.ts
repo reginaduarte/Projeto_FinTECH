@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-form',
@@ -10,75 +10,56 @@ import { Router } from '@angular/router';
   imports: [CommonModule, FormsModule]
 })
 export class FormComponent {
-  usuario = {
-    idUsuario: null,
-    cpf: '',
-    nome: '',
-    email: '',
-    senha: '',
-    tipoUsuario: '',
-    dataCriacao: '',
-    numeroConta: null
-  };
-
-  usuarios: any[] = [];
-  editIndex: number | null = null;
-
-  incluir(usuario: any) {
-    if (this.editIndex !== null) {
-      this.usuarios[this.editIndex] = { ...usuario };
-      this.editIndex = null;
-    } else {
-      this.gerarIdUsuario(usuario);
-      usuario.dataCriacao = new Date().toISOString();
-      usuario.numeroConta = Math.floor(Math.random() * 1000000) + 1;
-      this.usuarios.push({ ...usuario });
-    }
-    this.resetForm();
+  
+  allowNumbersOnly(event: any): void {
+    event.target.value = event.target.value.replace(/[^0-9]/g, '');// Permite apenas números
   }
 
-  gerarIdUsuario(usuario: any) {
-    // Gera um número aleatório único para o ID do usuário
-    usuario.idUsuario = Math.floor(Math.random() * 1000000) + 1;
+  allowLettersAndNumbers(event: any): void {
+    event.target.value = event.target.value.replace(/[^a-zA-Z0-9]/g, '');// Permite apenas letras e números
+  }
+ // Formatar CPF com pontos e traço
+ formatCPF(event: any): void {
+  let cpf = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+
+  // Limitar o CPF a 11 dígitos
+  if (cpf.length > 11) {
+    cpf = cpf.slice(0, 11);
   }
 
-  editarUsuario(index: number) {
-    this.usuario = { ...this.usuarios[index] };
-    this.editIndex = index;
+  // Formatar CPF
+  if (cpf.length <= 11) {
+    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
   }
 
-  deletarUsuario(index: number) {
-    this.usuarios.splice(index, 1);
+  event.target.value = cpf;
+}
+
+// Formatar Telefone com parênteses e traço
+formatTelefone(event: any): void {
+  let telefone = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+
+  if (telefone.length > 2) {
+    telefone = '(' + telefone.slice(0, 2) + ') ' + telefone.slice(2);
+  }
+  if (telefone.length > 10) {
+    telefone = telefone.slice(0, 10) + '-' + telefone.slice(10, 14);
   }
 
-  resetForm() {
-    this.usuario = {
-      idUsuario: null,
-      cpf: '',
-      nome: '',
-      email: '',
-      senha: '',
-      tipoUsuario: '',
-      dataCriacao: '',
-      numeroConta: null
-    };
-    this.editIndex = null;
+  event.target.value = telefone;
+}
+
+// Formatar CEP com traço
+formatCEP(event: any): void {
+  let cep = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+
+  if (cep.length > 5) {
+    cep = cep.slice(0, 5) + '-' + cep.slice(5, 9);
   }
 
-  constructor(private router: Router) {}
-  Limpar(){
-    console.log('Limpar o formulário');
-    this.resetForm();// Resetar o formulário após salvar
-  }
-  Visualizar() {
-    throw new Error('.');
-    }
-  visualizar() {
-    console.log('Vai para Visualização');
-    this.router.navigate(['/visualizar']);
-  }
-  fechar() {
-    console.log('Volta para adm');
-    this.router.navigate(['/adm']);
-  }
+  event.target.value = cep;
+}
+ 
 }

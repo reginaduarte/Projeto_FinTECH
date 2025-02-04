@@ -1,6 +1,6 @@
-<div id="quadrado-container" class="content-section">
-  <div class="deposito-container">
-    <form (ngSubmit)="onSubmit()" class="deposito-form">
+<div class="content-section">
+  <div class="form-wrapper">
+    <form (ngSubmit)="onSubmit()" class="form-deposito">
       <h2>Depósito</h2>
       <div class="form-row">
         <div class="form-group">
@@ -18,7 +18,6 @@
           <label for="valor"><i class="fas fa-money-bill-wave"></i>Valor:</label>
           <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Digite o valor" required />
         </div>
-
         <div class="form-group">
           <label for="senha"><i class="fas fa-key"></i>Senha:</label>
           <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required />
@@ -30,11 +29,28 @@
         <input type="text" id="descricao" [(ngModel)]="descricao" name="descricao" placeholder="Informe uma descrição" required />
       </div>
 
-      <button type="submit" class="btn-submit">Depositar</button>
-
-      <div class="mensagem" *ngIf="mensagem">
-        {{ mensagem }}
+      <button type="submit" class="btn-submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Depositar</button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-university"></i>Trust Bank</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div class="mensagem" *ngIf="mensagem">{{ mensagem }}</div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
       </div>
+    </div>
+  </div>
+</div>
+
     </form>
+  </div>
+  <div class="image-wrapper">
+    <img src="assets/deposito.png">
   </div>
 </div>

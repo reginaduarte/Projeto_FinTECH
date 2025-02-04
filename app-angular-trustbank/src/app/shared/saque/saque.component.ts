@@ -58,7 +58,7 @@ export class SaqueComponent implements OnInit {
         this.descricao = '';
       },
       (error) => {
-        this.mensagem = 'Erro ao realizar o saque. Verifique os dados.';
+        this.mensagem = 'Erro ao realizar o saque. Verifique os dados informados.';
         console.error('Erro:', error);
       }
     );

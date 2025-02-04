@@ -1,8 +1,25 @@
-<div class="logout-container">
-    <div class="logout-box">
-      <h2>Logout</h2>
-      <p>Você tem certeza que deseja sair?</p>
-      <button class="btn-logout" (click)="logout()">Sim, sair</button>
-      <button class="btn-cancel" (click)="return()">Voltar ao menu</button>
-    </div>
+<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalChoice">
+  <div class="modal-dialog " role="document">
+      <div class="modal-content rounded-3 shadow custom-border"> <!-- Borda personalizada -->
+          <div class="modal-body p-4 text-center">
+              <img src="assets/logout.png" alt="img logout">
+              <p class="mb-0">Você tem certeza que deseja sair?</p>
+          </div>
+          <div class="modal-footer flex-nowrap p-0">
+              <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end custom-button" (click)="logout()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#002b5c" class="bi bi-check-circle me-2" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                  </svg>
+                  <strong>Sim, sair</strong>
+              </button>
+              <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 custom-button" data-bs-dismiss="modal" (click)="return()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#002b5c" class="bi bi-house-door me-2" viewBox="0 0 16 16">
+                      <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+                  </svg>
+                  Voltar ao home
+              </button>
+          </div>
+      </div>
+  </div>
 </div>

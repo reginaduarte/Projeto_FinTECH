@@ -1,4 +1,7 @@
 <div id="quadrado-container" class="content-section">
+  <div class="image-wrapper">
+    <img src="assets/edicao.png" alt="img dados">
+  </div>
     <div class="edicao-dados-container">
       <form (ngSubmit)="onSubmit()" class="edicao-dados-form">
         <h2>Atualize seus Dados Pessoais</h2>
@@ -10,20 +13,32 @@
 
         <div class="form-group">
           <label for="senha"><i class="fas fa-key"></i>Senha:</label>
-          <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Digite a sua senha" required/>
+          <input type="password" id="senha" [(ngModel)]="senha" name="senha" placeholder="Atualize a sua senha" required/>
         </div>
-      </div>
-  
         <div class="form-group">
           <label for="email"><i class="fas fa-envelope"></i>E-mail:</label>
           <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="Atualize seu o e-mail" required />
         </div>
+      </div>
   
-        <button type="submit" class="btn-submit">Salvar Alterações</button>
-  
-        <div class="mensagem" *ngIf="mensagem">
-          {{ mensagem }}
-        </div>
+        <button type="submit" class="btn-submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Salvar Alterações</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-university"></i>Trust Bank</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                      <div class="mensagem" *ngIf="mensagem">{{ mensagem }}</div>
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
       </form>
     </div>
-  </div>
+</div>
