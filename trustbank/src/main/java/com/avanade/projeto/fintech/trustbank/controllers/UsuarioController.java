@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.avanade.projeto.fintech.trustbank.dto.LoginDTO;
 import com.avanade.projeto.fintech.trustbank.dto.UsuarioContaDTO;
 import com.avanade.projeto.fintech.trustbank.entities.Usuario;
+import com.avanade.projeto.fintech.trustbank.services.FormularioServices;
 import com.avanade.projeto.fintech.trustbank.services.UsuarioServices;
 
 @RestController
@@ -26,6 +27,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioServices usuarioService;
+	
+	@Autowired
+	private FormularioServices formularioServices;
 
 	// 1) Consulta de usuários
 	@GetMapping("/lista")
@@ -141,4 +145,32 @@ public class UsuarioController {
 	        }
 	    }
 	
+	
+	// 3) Inclusão / Alteração de usuário - form
+	@PostMapping("/new/{cpf}")
+	public ResponseEntity<?> gravarUsuario(@PathVariable("cpf") String cpf) {
+		try {
+			return new ResponseEntity<Usuario>(formularioServices.gravarUsuario(cpf), HttpStatus.CREATED);
+
+		} catch (Exception e) {
+
+			
+			 throw new RuntimeException(e);
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+		}
+	}
+	
+	// 4) Exclusão de usuário - form
+	@DeleteMapping("/reprovar/{cpf}")
+	public ResponseEntity<?> reprovarSolicitacao(@PathVariable("cpf") String cpf) {
+	    try {
+	        formularioServices.reprovarSolicitacao(cpf);
+	        return ResponseEntity.ok("Solicitação reprovada com sucesso!");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao reprovar a solicitação: " + e.getMessage());
+	    }
+	}
+
+
 }

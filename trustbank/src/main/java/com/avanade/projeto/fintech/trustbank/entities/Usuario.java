@@ -38,7 +38,7 @@ public class Usuario {
 	private String senhaUsuario;
 	
 	@Column(name = "TIPO_USUARIO") // TIPO I = CLIENTE | TIPO II = ADMIN
-	private int tipoUsuario;
+	private int tipoUsuario = 2;
 	
 	@Column(name = "DATA_CRIACAO")
 	@Temporal(value = TemporalType.TIMESTAMP)
