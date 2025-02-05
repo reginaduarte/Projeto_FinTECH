@@ -1,0 +1,160 @@
+#quadrado-container {
+    width: 100%;
+    max-width: 1000%;
+    padding: 30px;
+    background-color: #f0f8ff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    margin-left: -30px;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  #add-button {
+    background-color: #002f67;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  #add-button i {
+    font-size: 18px;
+  }
+  
+  #add-button:hover {
+    background-color: #004a99;
+  }
+  
+  
+  .visualizar-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    color: #002f67;
+    margin-bottom: 30px;
+  }
+
+  h1{
+    color: #002f67;
+    text-align: start;
+    font-size: 28px;
+  }
+  
+  .usuario-titulo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+    font-weight: bold;
+    color: #002f67;
+    background-color: #d9e8f4;
+    padding: 10px;
+    border-bottom: 3px solid #002f67;
+  }
+  
+  .usuario-titulo div {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .usuario-lista {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8em;
+  }
+  
+  .usuario-item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0f0ff;
+    background-color: #f5faff;
+    width: 100%;
+  }
+  
+  .usuario-item:nth-child(even) {
+    background-color: #e6f0ff;
+  }
+  
+  .usuario-item div {
+    flex: 1;
+    text-align: center;
+    color: black;
+  }
+  
+  .usuario-item .email {
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 200px;
+    word-break: break-word;
+    white-space: normal;
+  }
+  
+  .usuario-item div:nth-child(1),
+  .usuario-item div:nth-child(2),
+  .usuario-item div:nth-child(3),
+  .usuario-item div:nth-child(4),
+  .usuario-item div:nth-child(5),
+  .usuario-item div:nth-child(6) {
+    max-width: 150px;
+    word-wrap: break-word;
+  }
+  
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button i {
+    margin-right: 5px;
+  }
+  
+  button:hover {
+    color: #007BFF;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  #update {
+    color: green;
+  }
+  
+  #delete {
+    color: red;
+  }
+  
+  .mensagem {
+    color: black;
+  }
+  
+  .btn{
+    background-color: #68727f;
+    color: white;
+  }
+
+  .logo-img{
+    width: 6%;
+    margin-bottom: 8px;
+  }

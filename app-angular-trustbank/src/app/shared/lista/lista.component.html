@@ -1,0 +1,57 @@
+<div id="quadrado-container" class="content-section">
+    <div class="visualizar-container">
+      <div class="header-container">
+        <h2>Gerenciar Solicitações</h2>
+        <button id="add-button" (click)="adicionarSolicitacao()">
+          <i class="bi bi-plus-circle"></i> Novo Cliente
+        </button>
+      </div>
+  
+      <div class="usuario-titulo">
+        <div><strong>ID</strong></div>
+        <div><strong>CPF</strong></div>
+        <div><strong>Nome</strong></div>
+        <div><strong>E-mail</strong></div>
+        <div><strong>Telefone</strong></div>
+        <div><strong>Data</strong></div>
+        <div><strong>Ações</strong></div> 
+      </div>
+  
+      <div class="usuario-lista">
+        <div *ngFor="let solicitacao of solicitacoes" class="usuario-item">
+          <div>{{ solicitacao.idSolicitacao }}</div>
+          <div>{{ solicitacao.cpf }}</div>
+          <div>{{ solicitacao.nome }}</div>
+          <div class="email">{{ solicitacao.email }}</div>
+          <div>{{ solicitacao.telefone }}</div>
+          <div>{{ solicitacao.dataSolicitacao | date:'dd/MM/yyyy' }}</div>
+          <div class="acoes">
+            <button (click)="aprovar(solicitacao)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="bi bi-check-circle" id="update"></i>
+            </button> |
+            <button (click)="recusar(solicitacao)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="bi bi-x-circle" id="delete"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"><img src="assets/logoC.png" alt="logo" class="logo-img">Trust Bank</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mensagem" *ngIf="mensagem">{{ mensagem }}</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" data-bs-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  

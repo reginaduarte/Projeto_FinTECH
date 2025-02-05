@@ -2,10 +2,10 @@
   width: 100%;
   max-width: 1000%;
   padding: 30px;
-  background-color: #ffffff;
+  background-color: #f0f8ff;
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  margin-left: -50px; 
+  margin-left: -30px; 
 }
 
 .visualizar-container {
@@ -114,3 +114,7 @@ h2{
   color: red;
 }
 
+.logo-img{
+  width: 6%;
+  margin-bottom: 8px;
+}

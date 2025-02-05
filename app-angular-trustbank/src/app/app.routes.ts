@@ -18,6 +18,7 @@ import { AdmstartComponent } from './shared/admstart/admstart.component';
 import { AdmlogsComponent } from './shared/admlogs/admlogs.component';
 import { VisualizarComponent } from './shared/visualizar/visualizar.component';
 import { AdmcadastroComponent } from './shared/admcadastro/admcadastro.component';
+import { ListaComponent } from './shared/lista/lista.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,6 +45,7 @@ export const routes: Routes = [
     children: [
       { path: 'admstart', component: AdmstartComponent},
       { path: 'admcadastro', component: AdmcadastroComponent },
+      { path: 'lista', component: ListaComponent},
       { path: 'visualizar', component: VisualizarComponent },
       { path: 'admlogs', component: AdmlogsComponent },
       { path: 'admlogout', component: AdmlogoutComponent },

@@ -133,3 +133,26 @@ input[type="number"]:focus, input[type="password"]:focus {
 .error-message {
   color: red;
 }
+
+.register-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-btn {
+  color: #004080;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p{
+  color: #004080;
+}
+
+.register-btn:hover {
+  text-decoration: underline;
+}
+
+img{
+  width: 15%;
+}

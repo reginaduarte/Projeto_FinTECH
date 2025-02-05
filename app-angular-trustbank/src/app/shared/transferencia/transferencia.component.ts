@@ -48,7 +48,7 @@ export class TransferenciaComponent implements OnInit {
     // Chamada ao serviço para realizar a transferência
     this.transferenciaService.transferir(transferencia).subscribe({
       next: () => {
-        this.mensagem = 'Transferência realizada com sucesso!';
+        this.mensagem = `Transferência no valor de R$ ${this.valor.toFixed(2)} realizada com sucesso para a conta ${this.conta}, agência ${this.agencia}!`;
       },
       error: (error) => {
         this.mensagem = 'Erro ao realizar a transferência. Verifique os dados e tente novamente.';

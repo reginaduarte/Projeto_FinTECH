@@ -17,7 +17,7 @@
   }
   
   header .logo {
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -81,4 +81,7 @@
   .btn i {
     margin-right: 10px; 
     font-size: 1.4em; 
+  }
+  img{
+    width: 18%;
   }

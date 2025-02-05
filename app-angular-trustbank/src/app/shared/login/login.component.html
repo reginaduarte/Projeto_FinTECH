@@ -3,7 +3,7 @@
       <div class="login-card">
         <button class="close-btn" (click)="closeLogin()">×</button>
         <div class="brand-logo">
-        <i class="fas fa-university"></i>
+        <img src="assets/logoC.png" alt="logo">
         <span>Trust Bank</span>
       </div>
         <div class="login-container">
@@ -30,6 +30,10 @@
           
               <button type="submit" class="login-btn">Entrar</button>
             </form>
+            <p class="register-link">
+              Ainda não tem uma conta?
+              <a [routerLink]="'/form'" class="register-btn">Cadastre-se aqui!</a>
+            </p>            
           </div>  
           <div *ngIf="mensagemErro" class="error-message">
             {{ mensagemErro }}

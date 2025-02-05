@@ -1,65 +1,66 @@
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
+import { SolicitacaoService } from '../../services/solicitacao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
+  standalone: true,
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, HttpClientModule]
 })
 export class FormComponent {
-  
-  allowNumbersOnly(event: any): void {
-    event.target.value = event.target.value.replace(/[^0-9]/g, '');// Permite apenas números
+  formData: any = {
+    nome: '',
+    cpf: '',
+    email: '',
+    telefone: '',
+    cep: '',
+    logradouro: '',
+    numero: '',
+    bairro: '',
+    cidade: '',
+    estado: '',
+    senha: '',
+    status: 1,
+    dataSolicitacao: ''
+  };
+
+  mensagem: string | null = null;
+
+  constructor(private router: Router, private solicitacaoService: SolicitacaoService) {}
+
+  private formatarData(): string {
+    const agora = new Date();
+    const dia = String(agora.getDate()).padStart(2, '0');
+    const mes = String(agora.getMonth() + 1).padStart(2, '0');
+    const ano = agora.getFullYear();
+    const horas = String(agora.getHours()).padStart(2, '0');
+    const minutos = String(agora.getMinutes()).padStart(2, '0');
+    const segundos = String(agora.getSeconds()).padStart(2, '0');
+
+    return `${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
   }
 
-  allowLettersAndNumbers(event: any): void {
-    event.target.value = event.target.value.replace(/[^a-zA-Z0-9]/g, '');// Permite apenas letras e números
+  enviarFormulario() {
+    this.formData.dataSolicitacao = this.formatarData();
+
+    this.solicitacaoService.solicitarCadastro(this.formData).subscribe({
+      next: (response) => {
+        this.mensagem = 'Solicitação de cadastro realizada com sucesso!';
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 500000);
+      },
+      error: (error) => {
+        this.mensagem = 'Erro ao cadastrar. Tente novamente.';
+      }
+    });
   }
- // Formatar CPF com pontos e traço
- formatCPF(event: any): void {
-  let cpf = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-
-  // Limitar o CPF a 11 dígitos
-  if (cpf.length > 11) {
-    cpf = cpf.slice(0, 11);
+    navegarParaHome() {
+    this.router.navigate(['/']);
   }
-
-  // Formatar CPF
-  if (cpf.length <= 11) {
-    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  }
-
-  event.target.value = cpf;
-}
-
-// Formatar Telefone com parênteses e traço
-formatTelefone(event: any): void {
-  let telefone = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-
-  if (telefone.length > 2) {
-    telefone = '(' + telefone.slice(0, 2) + ') ' + telefone.slice(2);
-  }
-  if (telefone.length > 10) {
-    telefone = telefone.slice(0, 10) + '-' + telefone.slice(10, 14);
-  }
-
-  event.target.value = telefone;
-}
-
-// Formatar CEP com traço
-formatCEP(event: any): void {
-  let cep = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-
-  if (cep.length > 5) {
-    cep = cep.slice(0, 5) + '-' + cep.slice(5, 9);
-  }
-
-  event.target.value = cep;
-}
- 
 }

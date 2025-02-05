@@ -1,24 +1,47 @@
-<div class="text-center">
-    <h1>Bem-vinda <span> {{ nomeAdmin }}</span> a área do Gerente!</h1>
-    <p>Gerencie seus clientes:</p>
-  </div>
-  
-  <body>
-      <div class="main-content">
-          <h1></h1>
-          <div class="card-container">
-              <div class="card"><h4><i class="bi bi-person-add"></i></h4>
-                  <h5>Novo Cliente</h5>
-                  <a routerLink="/adm/admcadastro" routerLinkActive="active">Acessar</a>
-              </div>
-              <div class="card"><h4><i class="bi bi-person-lines-fill "></i></h4>
-                  <h5>Meus Clientes</h5>
-                  <a routerLink="/adm/visualizar" routerLinkActive="active">Acessar</a>
-              </div>
-              <div class="card"><h4><i class="fas fa-cogs"></i></h4>
-                  <h5>Logs de Acesso</h5>
-                  <a routerLink="/adm/admlogs" routerLinkActive="active">Acessar</a>
-              </div>
-          </div>
-      </div>
-  </body> 
+<div class="container">
+  <div class="container text-center mt-4">
+    <h1 class="my-4 title">Bem-vinda <span> {{ nomeAdmin }}</span> à área administrativa!</h1>
+    <p class="lead subtitle">Gerencie seus clientes com facilidade.</p>
+</div>
+<body>
+    <div class="container main-content">
+        <div class="quote-card my-4 p-4 bg-light rounded shadow-sm text-center">
+            <h2><i class="bi bi-quote quote-icon"></i></h2>
+            <h5 class="quote-title">Eles confiam, nós cuidamos.</h5>
+            <p class="mb-0 quote-text">"Garantindo segurança e prosperidade para cada cliente, todos os dias."</p>
+        </div>
+        <div class="dashboard row">
+            <div class="col-md-4 my-2">
+                <div class="card p-4 shadow-sm card-custom">
+                    <div class="card-body text-center">
+                        <h2><i class="bi bi-person-add card-icon"></i></h2>
+                        <h5 class="card-title">Novo Cliente</h5>
+                        <p class="card-text">Cadastre novos clientes.</p>
+                        <a routerLink="/adm/lista" routerLinkActive="active" class="btn btn-primary card-btn">Acessar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 my-2">
+                <div class="card p-4 shadow-sm card-custom">
+                    <div class="card-body text-center">
+                        <h2><i class="bi bi-people card-icon"></i></h2>
+                        <h5 class="card-title">Meus Clientes</h5>
+                        <p class="card-text">Gerencie todos os clientes.</p>
+                        <a routerLink="/adm/visualizar" routerLinkActive="active" class="btn btn-primary card-btn">Acessar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 my-2">
+                <div class="card p-4 shadow-sm card-custom">
+                    <div class="card-body text-center">
+                        <h2><i class="bi bi-list card-icon"></i></h2>
+                        <h5 class="card-title">Logs de Acesso</h5>
+                        <p class="card-text">Monitore os logs de acesso.</p>
+                        <a routerLink="/adm/admlogs" routerLinkActive="active" class="btn btn-primary card-btn">Acessar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</div>

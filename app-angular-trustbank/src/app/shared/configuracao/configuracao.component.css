@@ -89,3 +89,8 @@ input:focus {
 img{
   width: 25%;
 }
+
+.logo-img{
+  width: 6%;
+  margin-bottom: 8px;
+}

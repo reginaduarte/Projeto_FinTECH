@@ -133,3 +133,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 .error-message {
   color: red;
 }
+
+img{
+  width: 15%;
+}

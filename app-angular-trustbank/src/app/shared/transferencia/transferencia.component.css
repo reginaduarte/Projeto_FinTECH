@@ -80,6 +80,10 @@ input:focus {
   color: black;
 }
 
+.logo-img{
+  width: 6%;
+  margin-bottom: 8px;
+}
 
 .content-section {
   width: 100%;

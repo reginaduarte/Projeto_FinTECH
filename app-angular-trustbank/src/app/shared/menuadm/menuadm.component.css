@@ -56,3 +56,8 @@
   font-size: 1.1em;
   font-weight: bold;
 }
+
+img {
+  width: 22%;
+  margin-top: -8px;
+}

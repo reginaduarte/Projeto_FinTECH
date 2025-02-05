@@ -32,6 +32,7 @@ export class ConfiguracaoComponent implements OnInit {
     if (this.telefone && this.email && this.idUsuario !== null) {
       const dadosAtualizados = {
         idUsuario: this.idUsuario, 
+        nomeUsuario: '',
         telefoneUsuario: this.telefone,
         emailUsuario: this.email,
         senhaUsuario: this.senha

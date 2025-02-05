@@ -38,7 +38,7 @@ export class DepositoComponent implements OnInit {
     // Chamando o serviço de transação para realizar o depósito
     this.transacaoService.depositar(depositoData).subscribe(
       (response) => {
-        this.mensagem = `Depósito de R$ ${this.valor.toFixed(2)} realizado com sucesso para a conta ${this.numeroConta}, agência ${this.numeroConta}!`;
+        this.mensagem = `Depósito no valor de R$ ${this.valor.toFixed(2)} realizado com sucesso para a conta ${this.numeroConta}, agência ${this.numAgencia}!`;
         console.log('Resposta do servidor:', response);
         this.resetForm();
       },

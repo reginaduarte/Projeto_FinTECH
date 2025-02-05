@@ -108,6 +108,11 @@ input:focus {
   object-fit: contain;
 }
 
+.logo-img{
+  width: 6%;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 768px) {
   .content-section {
     flex-direction: column; 

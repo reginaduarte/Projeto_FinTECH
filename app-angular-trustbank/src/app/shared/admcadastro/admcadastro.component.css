@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 900px; 
   padding: 30px; 
-  background-color: #ffffff;
+  background-color: #f0f8ff;
   border-radius: 15px; 
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
   margin-top: auto;
@@ -46,7 +46,7 @@ i {
 }
 
 input {
-  padding: 15px; 
+  padding: 12px; 
   font-size: 18px; 
   border: 1px solid #ccc;
   border-radius: 8px; 
@@ -87,5 +87,10 @@ input:focus {
 .success-message {
   color: black;
   margin-top: 15px;
-  text-align:justify;
+  text-align: center;
+}
+
+.logo-img{
+  width: 6%;
+  margin-bottom: 8px;
 }
